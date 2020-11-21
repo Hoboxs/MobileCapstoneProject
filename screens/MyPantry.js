@@ -12,40 +12,35 @@ import {
   Image,
 } from 'react-native';
 
+/* https://www.npmjs.com/package/react-native-dropdown-picker */
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
+
 const MyPantryScreen = ({navigation}) => {
+
    return (
      <View style={styles.container}>
-         <View style={styles.inputView} >
-           <TextInput
-             style={styles.inputText}
-             placeholder="Full Name"
-             placeholderTextColor="black"
-             editable={false}
-           />
-         </View>
-        <View style={styles.inputView} >
-          <TextInput
-            style={styles.inputText}
-            placeholder="Email"
-            placeholderTextColor="black"
-            editable={false}
-          />
-        </View>
-        <View style={styles.inputView} >
-          <TextInput
-            secureTextEntry
-            style={styles.inputText}
-            placeholder="Password"
-            placeholderTextColor="black"
-            editable={false}
-          />
-        </View>
-        <TouchableOpacity style={styles.registerBtn} onPress={()=>{
-          navigation.navigate('Login');
-          }}>
-          <Text style={styles.registerText}>LOG OUT</Text>
-        </TouchableOpacity>
-      </View>
+
+       <DropDownPicker
+          items={[
+              {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
+              {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
+          ]}
+
+          multiple={true}
+          multipleText="%d items have been selected."
+          min={0}
+          max={10}
+
+          defaultValue={'uk'}
+          containerStyle={{height: 40}}
+
+          style={{paddingVertical: 10}}
+          dropDownStyle={{backgroundColor: '#fafafa'}}
+          containerStyle={{width: 150, height: 70}}
+
+      />
+     </View>
   );
 };
 

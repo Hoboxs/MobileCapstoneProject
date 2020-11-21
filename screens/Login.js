@@ -10,59 +10,71 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
+  ImageBackground,
 } from 'react-native';
 
 const LoginScreen = ({navigation}) => {
    return (
-     <View style={styles.container}>
-        <Image
-          style={{ width: 313.5, height: 232.5, marginBottom: 20 }}
-          source={require("../images/bitstobiteslogo.png")}
-        />
-        <View style={styles.inputView} >
-          <TextInput
-            style={styles.inputText}
-            placeholder="Email"
-            placeholderTextColor="lightgrey"
+     <View style={styles.backgroundContainer}>
+      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+        <View style={styles.container}>
+          <Image
+            style={{ width: 313.5, height: 232.5, marginBottom: 20 }}
+            source={require("../images/bitstobiteslogo.png")}
           />
-        </View>
-        <View style={styles.inputView} >
-          <TextInput
-            secureTextEntry
-            style={styles.inputText}
-            placeholder="Password"
-            placeholderTextColor="lightgrey"
-          />
-        </View>
+          <View style={styles.inputView} >
+            <TextInput
+              style={styles.inputText}
+              placeholder="Email"
+              placeholderTextColor="lightgrey"
+            />
+          </View>
+          <View style={styles.inputView} >
+            <TextInput
+              secureTextEntry
+              style={styles.inputText}
+              placeholder="Password"
+              placeholderTextColor="lightgrey"
+            />
+          </View>
 
-        <TouchableOpacity style={styles.loginBtn} onPress={()=>{
-          navigation.navigate('Dashboard');
-          }}>
-          <Text style={styles.loginText} >
-            LOGIN</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.forgot} onPress={()=>{
-            navigation.navigate('ForgotPassword');
-            }}>Forgot Password?</Text>
-        </TouchableOpacity>
-        <Text style={styles.loginText}> {"Don't have an account? "}
-          <Text style={styles.signupText} onPress={()=>{
-            navigation.navigate('Register');
+          <TouchableOpacity style={styles.loginBtn} onPress={()=>{
+            navigation.navigate('Dashboard');
             }}>
-          Sign Up</Text>
-        </Text>
+            <Text style={styles.loginText} >
+              LOGIN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.forgot} onPress={()=>{
+              navigation.navigate('ForgotPassword');
+              }}>Forgot Password?</Text>
+          </TouchableOpacity>
+          <Text style={styles.loginText}> {"Don't have an account? "}
+            <Text style={styles.signupText} onPress={()=>{
+              navigation.navigate('Register');
+              }}>
+            Sign Up</Text>
+          </Text>
+          </View>
+        </ImageBackground>
       </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  backgroundContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
   logo:{
     fontWeight:"bold",

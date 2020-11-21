@@ -10,7 +10,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Alert
+  Alert,
+  ImageBackground,
 } from 'react-native';
 
 const ForgotPasswordScreen = ({navigation}) => {
@@ -23,6 +24,8 @@ const ForgotPasswordScreen = ({navigation}) => {
     );
 
    return (
+     <View style={styles.backgroundContainer}>
+      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
      <View style={styles.container}>
          <Image
            style={{ width: 313.5, height: 232.5, marginBottom: 20 }}
@@ -39,23 +42,26 @@ const ForgotPasswordScreen = ({navigation}) => {
         <TouchableOpacity onPress={ResetInfoAlert} style={styles.registerBtn} >
           <Text style={styles.registerText}>SEND EMAIL</Text>
         </TouchableOpacity>
+        </View>
+      </ImageBackground>
       </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  backgroundContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo:{
-    fontWeight:"bold",
-    fontSize:50,
-    color:"#fb5b5a",
-    marginBottom:40
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
   inputView:{
     width:"80%",

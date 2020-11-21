@@ -34,16 +34,12 @@ const AppStack = () => {
            name="Login"
            component={LoginScreen}
            options={{
-               title: 'Login',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
 
          />
@@ -51,32 +47,24 @@ const AppStack = () => {
            name="Register"
            component={RegisterScreen}
            options={{
-               title: 'Register',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
          />
          <Stack.Screen
            name="ForgotPassword"
            component={ForgotPasswordScreen}
            options={{
-               title: 'Forgot Password',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
          />
          <Stack.Screen name="Dashboard"

@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  ImageBackground,
 } from 'react-native';
 
 const RegisterScreen = ({navigation}) => {
@@ -22,6 +23,8 @@ const RegisterScreen = ({navigation}) => {
       { cancelable: false }
     );
    return (
+     <View style={styles.backgroundContainer}>
+      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
      <View style={styles.container}>
          <View style={styles.headerView}>
            <Text style={styles.header1Text}>
@@ -71,23 +74,26 @@ const RegisterScreen = ({navigation}) => {
             }}>
           Sign In</Text>
         </Text>
+        </View>
+      </ImageBackground>
       </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  backgroundContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  logo:{
-    fontWeight:"bold",
-    fontSize:50,
-    color:"#fb5b5a",
-    marginBottom:40
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
   },
   inputView:{
     width:"80%",
@@ -114,7 +120,6 @@ const styles = StyleSheet.create({
   },
   headerView:{
     width:"100%",
-    backgroundColor:"#E5E5E5",
     height:50,
     marginBottom:20,
     justifyContent:"center",

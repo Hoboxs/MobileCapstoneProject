@@ -11,185 +11,110 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
+  ImageBackground,
 } from 'react-native';
 
 const DashboardScreen = ({navigation}) => {
    return (
-     <View style={styles.container}>
-       <View style={styles.searchHeader}>
-        <Text style={styles.searchText}>Discover</Text>
-        <View style={styles.inputView} >
-        <TextInput
-          style={styles.inputText}
-          placeholder="Search"
-          placeholderTextColor="lightgrey"
-        />
+     <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+            <View style={styles.container}>
+                <View style={styles.searchContainer}>
+                    <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                        <View style={styles.searchHeader}>
+                            <Text style={styles.searchText}>Discover</Text>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                  style={styles.inputText}
+                                  placeholder="Search"
+                                  placeholderTextColor="lightgrey"
+                                />
+                            </View>
+                        </View>
+                    </ImageBackground>
+                </View>
+            <View style={styles.scrollContainer}>
+                <ScrollView>
+                    <View style={styles.scroll}>
+                        <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
+                        <ScrollView horizontal>
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food1.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food2.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food3.jpg")}
+                            />
+                        </ScrollView>
+                    </View>
+                    <View style={styles.scroll}>
+                        <Text style={styles.headerText}>USE YOUR BROCCOLI</Text>
+                        <ScrollView horizontal>
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food4.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food5.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food6.jpg")}
+                            />
+                        </ScrollView>
+                    </View>
+                    <View style={styles.scroll}>
+                        <Text style={styles.headerText}>USE YOUR TOFU</Text>
+                        <ScrollView horizontal>
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food7.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food8.jpg")}
+                            />
+                            <Image
+                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                              source={require("../images/dashboard/food1.jpg")}
+                            />
+                        </ScrollView>
+                    </View>
+                </ ScrollView>
+            </View>
         </View>
-       </View>
-       <View style={styles.scrollContainer}>
-       <ScrollView>
-        <View style={styles.scroll}>
-          <Text>USE YOUR CHICKEN</Text>
-          <ScrollView horizontal>
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-          </ScrollView>
-        </View>
-        <View style={styles.scroll}>
-          <Text>USE YOUR BROCCOLI</Text>
-          <ScrollView horizontal>
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-          </ScrollView>
-        </View>
-        <View style={styles.scroll}>
-          <Text>USE YOUR TOFU</Text>
-          <ScrollView horizontal>
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-          </ScrollView>
-        </View>
-        <View style={styles.scroll}>
-          <Text>USE YOUR BEEF</Text>
-          <ScrollView horizontal>
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-          </ScrollView>
-        </View>
-        <View style={styles.scroll}>
-          <Text>USE YOUR CARROTS</Text>
-          <ScrollView horizontal>
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-            <Image
-              style={{ width: 156.75, height: 116.25, marginBottom: 20 }}
-              source={require("../images/bitstobiteslogo.png")}
-            />
-          </ScrollView>
-        </View>
-        </ ScrollView>
-        </View>
-      </View>
+      </ImageBackground>
+     </View>
   );
 };
 
 
 const styles = StyleSheet.create({
+  backgroundContainer: {
+    flex: 1,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+  searchContainer: {
+    width:"100%",
+    flex: 1,
+  },
   searchHeader: {
     width:"100%",
-    backgroundColor:"#7C9262",
     justifyContent:"center",
     alignItems: 'center',
     flex: 1,
@@ -206,8 +131,7 @@ const styles = StyleSheet.create({
   },
   scroll: {
     width:"100%",
-    backgroundColor:"#E5E5E5",
-    height:100,
+    height:200,
     marginBottom:20,
     justifyContent:"center",
     padding:20
@@ -224,6 +148,10 @@ const styles = StyleSheet.create({
     height:50,
     color:"black"
   },
+  headerText: {
+    height:20,
+    fontWeight: 'bold',
+  }
 });
 
 export { DashboardScreen };
