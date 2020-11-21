@@ -22,6 +22,7 @@ import {ForgotPasswordScreen} from '../screens/ForgotPassword.js';
 import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
+import {FavoritesScreen} from '../screens/Favorites.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -78,15 +79,6 @@ const AppStack = () => {
   )
 }
 
-
-function Tab1Screen({navigation}){
-  return (
-    <View>
-      <Text>Tab 1</Text>
-    </View>
-  )
-}
-
 const AppTab = ({navigation}) => {
   return (
     <Tab.Navigator
@@ -97,7 +89,7 @@ const AppTab = ({navigation}) => {
             /* https://oblador.github.io/react-native-vector-icons/ */
             if (route.name === 'Dashboard') {
               iconName = focused ? 'ios-search-circle' : 'ios-search';
-            } else if (route.name === 'Tab1') {
+            } else if (route.name === 'Favorites') {
               iconName = focused ? 'ios-heart-sharp' : 'ios-heart-outline';
             } else if (route.name === 'MyPantry') {
               iconName = focused ? 'ios-list-circle' : 'ios-list';
@@ -117,7 +109,7 @@ const AppTab = ({navigation}) => {
         name="Dashboard"
         component={DashboardScreen}
       />
-      <Tab.Screen name="Tab1" component={Tab1Screen} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

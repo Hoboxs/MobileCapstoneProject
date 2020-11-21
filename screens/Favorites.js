@@ -17,7 +17,7 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
 
-const MyPantryScreen = ({navigation}) => {
+const FavoritesScreen = ({navigation}) => {
 
    return (
      <View style={styles.backgroundContainer}>
@@ -38,28 +38,10 @@ const MyPantryScreen = ({navigation}) => {
                     </ImageBackground>
                 </View>
                 <View style={styles.pantryContainer}>
-                   <DropDownPicker
-                      items={[
-                          {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
-                          {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
-                      ]}
 
-                      multiple={true}
-                      multipleText="%d items have been selected."
-                      min={0}
-                      max={10}
-
-                      defaultValue={'uk'}
-                      containerStyle={{height: 40}}
-
-                      style={{paddingVertical: 10}}
-                      dropDownStyle={{backgroundColor: '#fafafa'}}
-                      containerStyle={{width: 150, height: 70}}
-
-                  />
-      </View>
-      </View>
-    </ImageBackground>
+                </View>
+            </View>
+        </ImageBackground>
    </View>
   );
 };
@@ -113,4 +95,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { MyPantryScreen };
+export { FavoritesScreen };
