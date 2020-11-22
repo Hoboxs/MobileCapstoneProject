@@ -128,6 +128,7 @@ const styles = StyleSheet.create({
   },
   scrollContainer: {
     flex: 3,
+    marginHorizontal:18
   },
   scroll: {
     width:"100%",
