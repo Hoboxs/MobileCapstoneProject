@@ -16,13 +16,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {LoginScreen} from '../screens/Login.js';
-import {RegisterScreen} from '../screens/Register.js';
-import {ForgotPasswordScreen} from '../screens/ForgotPassword.js';
+import Login from '../screens/Login.js';
 import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
 import {FavoritesScreen} from '../screens/Favorites.js';
+import ForgotPassword from '../screens/ForgotPassword.js';
+import Register from '../screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -33,7 +33,7 @@ const AppStack = () => {
       <Stack.Navigator>
          <Stack.Screen
            name="Login"
-           component={LoginScreen}
+           component={Login}
            options={{
                title: '',
                headerStyle: {
@@ -46,7 +46,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="Register"
-           component={RegisterScreen}
+           component={Register}
            options={{
                title: '',
                headerStyle: {
@@ -58,7 +58,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="ForgotPassword"
-           component={ForgotPasswordScreen}
+           component={ForgotPassword}
            options={{
                title: '',
                headerStyle: {

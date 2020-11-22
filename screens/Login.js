@@ -11,9 +11,45 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Alert,
+  Platform,
 } from 'react-native';
 
-const LoginScreen = ({navigation}) => {
+class Login extends React.Component {
+
+  constructor({navigation}) {
+    super();
+    this.state = {
+      email: '',
+      emailError: '',
+      password: '',
+      passwordError: '',
+    }
+  }
+
+  onSubmit(){
+    if(this.state.email != "" && this.state.password != ""){
+      this.props.navigation.navigate('Dashboard');
+    }
+  }
+
+  emailValidator(){
+    if(this.state.email==""){
+      this.setState({emailError:"Enter a Valid Email"})
+    } else{
+      this.setState({emailError:""})
+    }
+  }
+
+  passwordValidator(){
+    if(this.state.password==""){
+      this.setState({passwordError:"Enter a Valid Password"})
+    } else{
+      this.setState({passwordError:""})
+    }
+  }
+
+  render() {
    return (
      <View style={styles.backgroundContainer}>
       <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -22,36 +58,42 @@ const LoginScreen = ({navigation}) => {
             style={{ width: 313.5, height: 232.5, marginBottom: 20 }}
             source={require("../images/bitstobiteslogo.png")}
           />
+          <View style={styles.errorText}>
+            <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.emailError}</Text>
+          </View>
           <View style={styles.inputView} >
             <TextInput
               style={styles.inputText}
               placeholder="Email"
+              onBlur={()=>this.emailValidator()}
               placeholderTextColor="lightgrey"
+              onChangeText={(text) => {this.setState({email: text})}}
             />
           </View>
+          <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.passwordError}</Text>
           <View style={styles.inputView} >
             <TextInput
               secureTextEntry
               style={styles.inputText}
               placeholder="Password"
+              onBlur={()=>this.passwordValidator()}
               placeholderTextColor="lightgrey"
+              onChangeText={(text) => {this.setState({password: text})}}
             />
           </View>
-
-          <TouchableOpacity style={styles.loginBtn} onPress={()=>{
-            navigation.navigate('Dashboard');
-            }}>
-            <Text style={styles.loginText} >
+          <TouchableOpacity style={styles.loginBtn}
+            onPress = {() => this.onSubmit()}>
+            <Text style={styles.loginText}>
               LOGIN</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.forgot} onPress={()=>{
-              navigation.navigate('ForgotPassword');
+              this.props.navigation.navigate('ForgotPassword');
               }}>Forgot Password?</Text>
           </TouchableOpacity>
           <Text style={styles.loginText}> {"Don't have an account? "}
             <Text style={styles.signupText} onPress={()=>{
-              navigation.navigate('Register');
+              this.props.navigation.navigate('Register');
               }}>
             Sign Up</Text>
           </Text>
@@ -59,6 +101,7 @@ const LoginScreen = ({navigation}) => {
         </ImageBackground>
       </View>
   );
+}
 };
 
 
@@ -112,7 +155,10 @@ const styles = StyleSheet.create({
   },
   signupText:{
     color:"red"
+  },
+  errorText:{
+    alignItems:"center",
   }
 });
 
-export { LoginScreen };
+export default Login;

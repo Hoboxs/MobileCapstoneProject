@@ -10,19 +10,42 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  Alert,
   ImageBackground,
+  Alert,
+  Platform,
 } from 'react-native';
 
-const ForgotPasswordScreen = ({navigation}) => {
-  const ResetInfoAlert = () =>
-    Alert.alert(
-      "",
-      "Please Check your email for password reset instructions.",
-      [{ text: "OK", onPress: () => console.log("OK Pressed") }],
-      { cancelable: false }
-    );
+class ForgotPassword extends React.Component {
 
+  constructor({navigation}) {
+    super();
+    this.state = {
+      email: '',
+      emailError: '',
+    }
+  }
+
+  onSubmit(){
+    if(this.state.email != ""){
+      Alert.alert(
+        "",
+        "Please Check your email for password reset instructions.",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+        { cancelable: false }
+      );
+      this.props.navigation.navigate('Login');
+    }
+  }
+
+  emailValidator(){
+    if(this.state.email==""){
+      this.setState({emailError:"Enter a Valid Email"})
+    } else{
+      this.setState({emailError:""})
+    }
+  }
+
+  render() {
    return (
      <View style={styles.backgroundContainer}>
       <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -31,21 +54,26 @@ const ForgotPasswordScreen = ({navigation}) => {
            style={{ width: 313.5, height: 232.5, marginBottom: 20 }}
            source={require("../images/bitstobiteslogo.png")}
          />
+         <View style={styles.errorText}>
+           <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.emailError}</Text>
+         </View>
         <View style={styles.inputView} >
           <TextInput
             style={styles.inputText}
             placeholder="Email"
+            onBlur={()=>this.emailValidator()}
             placeholderTextColor="lightgrey"
+            onChangeText={(text) => {this.setState({email: text})}}
           />
         </View>
-
-        <TouchableOpacity onPress={ResetInfoAlert} style={styles.registerBtn} >
+        <TouchableOpacity onPress={() => this.onSubmit()} style={styles.registerBtn} >
           <Text style={styles.registerText}>SEND EMAIL</Text>
         </TouchableOpacity>
         </View>
       </ImageBackground>
       </View>
   );
+}
 };
 
 
@@ -88,4 +116,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { ForgotPasswordScreen };
+export default ForgotPassword;
