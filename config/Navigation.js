@@ -23,7 +23,10 @@ import {MyPantryScreen} from '../screens/MyPantry.js';
 import {FavoritesScreen} from '../screens/Favorites.js';
 import {SearchRecipesScreen} from '../screens/SearchRecipes.js';
 import {StartRecipeScreen} from '../screens/StartRecipe.js';
-import { SearchParametersScreen } from '../screens/SearchParameters.js';
+import {SearchParametersScreen} from '../screens/SearchParameters.js';
+import {EditNameScreen} from '../screens/EditName.js';
+import {EditEmailScreen} from '../screens/EditEmail.js';
+import {EditPasswordScreen} from '../screens/EditPassword.js';
 import ForgotPassword from '../screens/ForgotPassword.js';
 import Register from '../screens/Register.js';
 
@@ -101,7 +104,42 @@ const AppStack = () => {
                headerTransparent: true,
              }}
          />
-
+         <Stack.Screen
+          name="EditName"
+          component={EditNameScreen}
+          options={{
+              title: '',
+              headerStyle: {
+                elevation: 0,
+                shadowOpacity: 0
+              },
+              headerTransparent: true,
+            }}
+        />
+        <Stack.Screen
+         name="EditEmail"
+         component={EditEmailScreen}
+         options={{
+             title: '',
+             headerStyle: {
+               elevation: 0,
+               shadowOpacity: 0
+             },
+             headerTransparent: true,
+           }}
+       />
+       <Stack.Screen
+        name="EditPassword"
+        component={EditPasswordScreen}
+        options={{
+            title: '',
+            headerStyle: {
+              elevation: 0,
+              shadowOpacity: 0
+            },
+            headerTransparent: true,
+          }}
+      />
       </Stack.Navigator>
     </NavigationContainer>
   );
