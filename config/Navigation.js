@@ -105,6 +105,18 @@ const AppStack = () => {
              }}
          />
          <Stack.Screen
+          name="SearchRecipes"
+          component={SearchRecipesScreen}
+          options={{
+              title: '',
+              headerStyle: {
+                elevation: 0,
+                shadowOpacity: 0
+              },
+              headerTransparent: true,
+            }}
+        />
+         <Stack.Screen
           name="EditName"
           component={EditNameScreen}
           options={{

@@ -38,7 +38,7 @@ const SearchParametersScreen = ({ navigation }) => {
             <ScrollView>
               <Text style={styles.category}>DIET</Text>
               <View style={styles.categories}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => {navigation.navigate('SearchRecipes')}}>
                   <View style={styles.myButton}>
                     <Text>Vegan</Text>
                   </View>
