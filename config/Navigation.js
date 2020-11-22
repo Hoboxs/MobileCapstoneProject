@@ -11,14 +11,12 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {LoginScreen} from '../screens/Login.js';
-import {RegisterScreen} from '../screens/Register.js';
-import {ForgotPasswordScreen} from '../screens/ForgotPassword.js';
+import Login from '../screens/Login.js';
 import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
@@ -26,6 +24,8 @@ import {FavoritesScreen} from '../screens/Favorites.js';
 import {SearchRecipesScreen} from '../screens/SearchRecipes.js';
 import {StartRecipeScreen} from '../screens/StartRecipe.js';
 import { SearchParametersScreen } from '../screens/SearchParameters.js';
+import ForgotPassword from '../screens/ForgotPassword.js';
+import Register from '../screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -36,7 +36,7 @@ const AppStack = () => {
       <Stack.Navigator>
          <Stack.Screen
            name="Login"
-           component={LoginScreen}
+           component={Login}
            options={{
                title: '',
                headerStyle: {
@@ -49,7 +49,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="Register"
-           component={RegisterScreen}
+           component={Register}
            options={{
                title: '',
                headerStyle: {
@@ -61,7 +61,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="ForgotPassword"
-           component={ForgotPasswordScreen}
+           component={ForgotPassword}
            options={{
                title: '',
                headerStyle: {
@@ -102,18 +102,26 @@ const AppStack = () => {
              }}
          />
 
-
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
+};
+
+
+function Tab1Screen({navigation}) {
+  return (
+    <View>
+      <Text>Tab 1</Text>
+    </View>
+  );
 }
 
 const AppTab = ({navigation}) => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
 
             /* https://oblador.github.io/react-native-vector-icons/ */
             if (route.name === 'Dashboard') {
@@ -139,7 +147,7 @@ const AppTab = ({navigation}) => {
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
-  )
-}
+  );
+};
 
 export {AppStack};
