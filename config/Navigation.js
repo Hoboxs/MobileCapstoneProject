@@ -97,7 +97,6 @@ const AppTab = ({navigation}) => {
               iconName = focused ? 'person' : 'person-outline';
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
@@ -105,10 +104,7 @@ const AppTab = ({navigation}) => {
           activeTintColor: 'black',
           inactiveTintColor: 'gray',
         }}>
-      <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-      />
+      <Tab.Screen name="Dashboard" component={DashboardScreen} />
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />

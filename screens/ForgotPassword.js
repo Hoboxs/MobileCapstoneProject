@@ -26,7 +26,8 @@ class ForgotPassword extends React.Component {
   }
 
   onSubmit(){
-    if(this.state.email != ""){
+    this.emailValidator();
+    if(this.emailValidator()){
       Alert.alert(
         "",
         "Please Check your email for password reset instructions.",
@@ -38,11 +39,15 @@ class ForgotPassword extends React.Component {
   }
 
   emailValidator(){
-    if(this.state.email==""){
+    if(this.state.email == ""){
+      this.setState({emailError:"Enter a Valid Email"})
+    } else if(this.state.email.indexOf('@') == -1){
       this.setState({emailError:"Enter a Valid Email"})
     } else{
       this.setState({emailError:""})
+      return true;
     }
+    return false;
   }
 
   render() {
