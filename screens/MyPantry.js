@@ -15,6 +15,10 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
 
+/* https://www.npmjs.com/package/react-native-dropdown-picker */
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
+
 const MyPantryScreen = ({navigation}) => {
   return (
     <View style={styles.backgroundContainer}>
@@ -493,6 +497,49 @@ const MyPantryScreen = ({navigation}) => {
         </View>
       </ImageBackground>
     </View>
+
+   return (
+     <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+            <View style={styles.container}>
+                <View style={styles.searchContainer}>
+                    <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                        <View style={styles.searchHeader}>
+                            <Text style={styles.searchText}>Discover</Text>
+                            <View style={styles.inputView} >
+                                <TextInput
+                                  style={styles.inputText}
+                                  placeholder="Search"
+                                  placeholderTextColor="lightgrey"
+                                />
+                            </View>
+                        </View>
+                    </ImageBackground>
+                </View>
+                <View style={styles.pantryContainer}>
+                   <DropDownPicker
+                      items={[
+                          {label: 'UK', value: 'uk', icon: () => <Icon name="flag" size={18} color="#900" />},
+                          {label: 'France', value: 'france', icon: () => <Icon name="flag" size={18} color="#900" />},
+                      ]}
+
+                      multiple={true}
+                      multipleText="%d items have been selected."
+                      min={0}
+                      max={10}
+
+                      defaultValue={'uk'}
+                      containerStyle={{height: 40}}
+
+                      style={{paddingVertical: 10}}
+                      dropDownStyle={{backgroundColor: '#fafafa'}}
+                      containerStyle={{width: 150, height: 70}}
+
+                  />
+      </View>
+      </View>
+    </ImageBackground>
+   </View>
   );
 };
 
@@ -514,6 +561,25 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 100,
+    resizeMode: "cover",
+    justifyContent: "center"
+  },
+  searchContainer: {
+    width:"100%",
+    flex: 1,
+  },
+  searchHeader: {
+    width:"100%",
+    justifyContent:"center",
+    alignItems: 'center',
+    flex: 1,
+  },
+  searchText: {
+    textAlign: 'center',
+    marginBottom:20,
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
   },
   searchContainer: {
     width: '100%',
@@ -570,6 +636,8 @@ const styles = StyleSheet.create({
   inputText: {
     height: 50,
     color: 'black',
+  pantryContainer: {
+    flex: 3,
   },
 });
 
