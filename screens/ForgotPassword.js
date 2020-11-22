@@ -72,10 +72,14 @@ class ForgotPassword extends React.Component {
         </View>
       </ImageBackground>
       </View>
+
+      <TouchableOpacity onPress={ResetInfoAlert} style={styles.registerBtn}>
+        <Text style={styles.registerText}>SEND EMAIL</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 };
-
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -91,28 +95,28 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center"
   },
-  inputView:{
-    width:"80%",
-    backgroundColor:"white",
-    height:50,
-    marginBottom:20,
-    justifyContent:"center",
-    padding:20
+  inputView: {
+    width: '80%',
+    backgroundColor: 'white',
+    height: 50,
+    marginBottom: 20,
+    justifyContent: 'center',
+    padding: 20,
   },
-  inputText:{
-    height:50,
-    color:"black"
+  inputText: {
+    height: 50,
+    color: 'black',
   },
-  registerBtn:{
-    width:"80%",
-    backgroundColor:"#7C9262",
-    height:50,
-    alignItems:"center",
-    justifyContent:"center",
-    marginBottom:20
+  registerBtn: {
+    width: '80%',
+    backgroundColor: '#7C9262',
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
   },
-  registerText:{
-    color:"white"
+  registerText: {
+    color: 'white',
   },
 });
 

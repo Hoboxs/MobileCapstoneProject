@@ -11,9 +11,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {NavigationContainer, DefaultTheme} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import Login from '../screens/Login.js';
@@ -72,19 +72,28 @@ const AppStack = () => {
           component={AppTab}
           options={{
             headerShown: false, // change this to `false`
-          }}/>
-
+          }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
-  )
+  );
+};
+
+
+function Tab1Screen({navigation}) {
+  return (
+    <View>
+      <Text>Tab 1</Text>
+    </View>
+  );
 }
 
 const AppTab = ({navigation}) => {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
 
             /* https://oblador.github.io/react-native-vector-icons/ */
             if (route.name === 'Dashboard') {
@@ -113,7 +122,7 @@ const AppTab = ({navigation}) => {
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
-  )
-}
+  );
+};
 
 export {AppStack};
