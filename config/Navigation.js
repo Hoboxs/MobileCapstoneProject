@@ -16,12 +16,13 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {LoginScreen} from '../screens/Login.js';
-import {RegisterScreen} from '../screens/Register.js';
-import {ForgotPasswordScreen} from '../screens/ForgotPassword.js';
+import Login from '../screens/Login.js';
 import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
+import {FavoritesScreen} from '../screens/Favorites.js';
+import ForgotPassword from '../screens/ForgotPassword.js';
+import Register from '../screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,51 +33,39 @@ const AppStack = () => {
       <Stack.Navigator>
          <Stack.Screen
            name="Login"
-           component={LoginScreen}
+           component={Login}
            options={{
-               title: 'Login',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
 
          />
          <Stack.Screen
            name="Register"
-           component={RegisterScreen}
+           component={Register}
            options={{
-               title: 'Register',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
          />
          <Stack.Screen
            name="ForgotPassword"
-           component={ForgotPasswordScreen}
+           component={ForgotPassword}
            options={{
-               title: 'Forgot Password',
+               title: '',
                headerStyle: {
-                 backgroundColor: '#E5E5E5',
                  elevation: 0,
                  shadowOpacity: 0
                },
-               headerTintColor: 'black',
-               headerTitleStyle: {
-                 fontWeight: 'bold',
-               },
+               headerTransparent: true,
              }}
          />
          <Stack.Screen name="Dashboard"
@@ -90,15 +79,6 @@ const AppStack = () => {
   )
 }
 
-
-function Tab1Screen({navigation}){
-  return (
-    <View>
-      <Text>Tab 1</Text>
-    </View>
-  )
-}
-
 const AppTab = ({navigation}) => {
   return (
     <Tab.Navigator
@@ -109,7 +89,7 @@ const AppTab = ({navigation}) => {
             /* https://oblador.github.io/react-native-vector-icons/ */
             if (route.name === 'Dashboard') {
               iconName = focused ? 'ios-search-circle' : 'ios-search';
-            } else if (route.name === 'Tab1') {
+            } else if (route.name === 'Favorites') {
               iconName = focused ? 'ios-heart-sharp' : 'ios-heart-outline';
             } else if (route.name === 'MyPantry') {
               iconName = focused ? 'ios-list-circle' : 'ios-list';
@@ -117,7 +97,6 @@ const AppTab = ({navigation}) => {
               iconName = focused ? 'person' : 'person-outline';
             }
 
-            // You can return any component that you like here!
             return <Ionicons name={iconName} size={size} color={color} />;
           },
         })}
@@ -125,11 +104,8 @@ const AppTab = ({navigation}) => {
           activeTintColor: 'black',
           inactiveTintColor: 'gray',
         }}>
-      <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-      />
-      <Tab.Screen name="Tab1" component={Tab1Screen} />
+      <Tab.Screen name="Dashboard" component={DashboardScreen} />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

@@ -11,7 +11,7 @@ import {AppStack} from './config/Navigation.js'
 const App: () => React$Node = () => {
     return (
       <>
-        <AppStack />        
+        <AppStack />
       </>
     );
   };
