@@ -28,7 +28,17 @@ const EditPasswordScreen = ({navigation}) => {
            <View style={styles.profileContainer}>
             <View style={styles.scroll}>
                <View style={styles.inputView}>
-                 <Text>{"Password:                               "}
+                 <Text>{"Current Password:                 "}
+                 <Text>**********</Text>
+                 </Text>
+               </View>
+               <View style={styles.inputView}>
+                 <Text>{"New Password:                      "}
+                 <Text>**********</Text>
+                 </Text>
+               </View>
+               <View style={styles.inputView}>
+                 <Text>{"Confirm New Password:       "}
                  <Text>**********</Text>
                  </Text>
                </View>
