@@ -28,7 +28,9 @@ class Login extends React.Component {
   }
 
   onSubmit(){
-    if(this.state.email != "" && this.state.password != ""){
+    this.emailValidator();
+    this.passwordValidator();
+    if(this.emailValidator() && this.passwordValidator()){
       this.props.navigation.navigate('Dashboard');
     }
   }
@@ -36,9 +38,13 @@ class Login extends React.Component {
   emailValidator(){
     if(this.state.email==""){
       this.setState({emailError:"Enter a Valid Email"})
+    } else if(this.state.email.indexOf('@') == -1 ){
+      this.setState({emailError:"Enter a Valid Email"})
     } else{
       this.setState({emailError:""})
+      return true;
     }
+    return false;
   }
 
   passwordValidator(){
@@ -46,7 +52,9 @@ class Login extends React.Component {
       this.setState({passwordError:"Enter a Valid Password"})
     } else{
       this.setState({passwordError:""})
+      return true;
     }
+    return false;
   }
 
   render() {

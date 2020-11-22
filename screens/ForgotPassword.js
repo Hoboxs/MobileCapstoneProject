@@ -26,10 +26,11 @@ class ForgotPassword extends React.Component {
   }
 
   onSubmit(){
-    if(this.state.email != ""){
+    this.emailValidator();
+    if(this.emailValidator()){
       Alert.alert(
         "",
-        "Please Check your email for password reset instructions.",
+        "Please check your email for password reset instructions.",
         [{ text: "OK", onPress: () => console.log("OK Pressed") }],
         { cancelable: false }
       );
@@ -40,9 +41,13 @@ class ForgotPassword extends React.Component {
   emailValidator(){
     if(this.state.email==""){
       this.setState({emailError:"Enter a Valid Email"})
+    } else if(this.state.email.indexOf('@') == -1 ){
+      this.setState({emailError:"Enter a Valid Email"})
     } else{
       this.setState({emailError:""})
+      return true;
     }
+    return false;
   }
 
   render() {
@@ -72,14 +77,10 @@ class ForgotPassword extends React.Component {
         </View>
       </ImageBackground>
       </View>
-
-      <TouchableOpacity onPress={ResetInfoAlert} style={styles.registerBtn}>
-        <Text style={styles.registerText}>SEND EMAIL</Text>
-      </TouchableOpacity>
-    </View>
   );
 }
 };
+
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -95,28 +96,28 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     justifyContent: "center"
   },
-  inputView: {
-    width: '80%',
-    backgroundColor: 'white',
-    height: 50,
-    marginBottom: 20,
-    justifyContent: 'center',
-    padding: 20,
+  inputView:{
+    width:"80%",
+    backgroundColor:"white",
+    height:50,
+    marginBottom:20,
+    justifyContent:"center",
+    padding:20
   },
-  inputText: {
-    height: 50,
-    color: 'black',
+  inputText:{
+    height:50,
+    color:"black"
   },
-  registerBtn: {
-    width: '80%',
-    backgroundColor: '#7C9262',
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 20,
+  registerBtn:{
+    width:"80%",
+    backgroundColor:"#7C9262",
+    height:50,
+    alignItems:"center",
+    justifyContent:"center",
+    marginBottom:20
   },
-  registerText: {
-    color: 'white',
+  registerText:{
+    color:"white"
   },
 });
 

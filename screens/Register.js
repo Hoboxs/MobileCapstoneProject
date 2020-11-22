@@ -32,7 +32,11 @@ class Register extends React.Component {
   }
 
   onSubmit(){
-    if(this.state.fullName != "" && this.state.email != "" && this.state.password != "" && this.state.confrimPassword != ""){
+    this.fullNameValidator();
+    this.emailValidator();
+    this.passwordValidator();
+    this.confirmPasswordValidator();
+    if(this.fullNameValidator() && this.emailValidator() && this.passwordValidator() && this.confirmPasswordValidator()){
       Alert.alert(
         "",
         "Your account has been created.",
@@ -48,15 +52,21 @@ class Register extends React.Component {
       this.setState({fullNameError:"Enter a Valid Full Name"})
     } else{
       this.setState({fullNameError:""})
+      return true;
     }
+    return false;
   }
 
   emailValidator(){
     if(this.state.email==""){
       this.setState({emailError:"Enter a Valid Email"})
+    } else if(this.state.email.indexOf('@') == -1 ){
+      this.setState({emailError:"Enter a Valid Email"})
     } else{
       this.setState({emailError:""})
+      return true;
     }
+    return false;
   }
 
   passwordValidator(){
@@ -64,15 +74,21 @@ class Register extends React.Component {
       this.setState({passwordError:"Enter a Valid Password"})
     } else{
       this.setState({passwordError:""})
+      return true;
     }
+    return false;
   }
 
   confirmPasswordValidator(){
     if(this.state.confirmPassword==""){
       this.setState({confirmPasswordError:"Enter a Valid Password"})
-    } else{
+    } else if(this.state.password != this.state.confirmPassword){
+      this.setState({confirmPasswordError:"Passwords Must Match"})
+    }else{
       this.setState({confirmPasswordError:""})
+      return true;
     }
+    return false;
   }
 
   render() {

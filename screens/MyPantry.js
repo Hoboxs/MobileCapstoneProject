@@ -12,8 +12,6 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import DropDownPicker from 'react-native-dropdown-picker';
-import Icon from 'react-native-vector-icons/Feather';
 
 /* https://www.npmjs.com/package/react-native-dropdown-picker */
 import DropDownPicker from 'react-native-dropdown-picker';
