@@ -23,6 +23,9 @@ import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
 import {FavoritesScreen} from '../screens/Favorites.js';
+import {SearchRecipesScreen} from '../screens/SearchRecipes.js';
+import {StartRecipeScreen} from '../screens/StartRecipe.js';
+import { SearchParametersScreen } from '../screens/SearchParameters.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -74,6 +77,32 @@ const AppStack = () => {
             headerShown: false, // change this to `false`
           }}/>
 
+          <Stack.Screen
+           name="SearchParameters"
+           component={SearchParametersScreen}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+         />
+          <Stack.Screen
+           name="StartRecipe"
+           component={StartRecipeScreen}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+         />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   )
@@ -105,10 +134,7 @@ const AppTab = ({navigation}) => {
           activeTintColor: 'black',
           inactiveTintColor: 'gray',
         }}>
-      <Tab.Screen
-        name="Dashboard"
-        component={DashboardScreen}
-      />
+      <Tab.Screen name="Dashboard"component={DashboardScreen}/>
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
