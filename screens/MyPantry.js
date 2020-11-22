@@ -19,19 +19,19 @@ const MyPantryScreen = ({navigation}) => {
   return (
     <View style={styles.backgroundContainer}>
       <ImageBackground
-        source={require('../images/background/background-light.jpg')}
+        source={require('../images/background/light-wood.jpg')}
         style={styles.image}>
         <View style={styles.container}>
           <View style={styles.searchContainer}>
             <ImageBackground
-              source={require('../images/background/background-dark.jpg')}
+              source={require('../images/background/dark-wood.jpg')}
               style={styles.image}>
               <View style={styles.searchHeader}>
                 <Text style={styles.searchText}>My Pantry</Text>
                 <View style={styles.inputView}>
                   <TextInput
                     style={styles.inputText}
-                    placeholder="Search"
+                    placeholder="Search Ingredients"
                     placeholderTextColor="lightgrey"
                   />
                 </View>
@@ -42,7 +42,7 @@ const MyPantryScreen = ({navigation}) => {
             <ScrollView>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -98,7 +98,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -147,7 +147,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -196,7 +196,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -245,7 +245,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -294,7 +294,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -343,7 +343,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -392,7 +392,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
@@ -441,7 +441,7 @@ const MyPantryScreen = ({navigation}) => {
               </View>
               <View style={styles.scroll}>
                 <ImageBackground
-                  source={require('../images/background/background-dark.jpg')}
+                  source={require('../images/background/dark-wood.jpg')}
                   style={styles.backgroundImage}>
                   <Text style={styles.searchText}>
                     <Image
