@@ -16,12 +16,13 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import {LoginScreen} from '../screens/Login.js';
-import {RegisterScreen} from '../screens/Register.js';
-import {ForgotPasswordScreen} from '../screens/ForgotPassword.js';
+import Login from '../screens/Login.js';
 import {DashboardScreen} from '../screens/Dashboard.js';
 import {ProfileScreen} from '../screens/Profile.js';
 import {MyPantryScreen} from '../screens/MyPantry.js';
+import {FavoritesScreen} from '../screens/Favorites.js';
+import ForgotPassword from '../screens/ForgotPassword.js';
+import Register from '../screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,56 +31,44 @@ const AppStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Login"
-          component={LoginScreen}
-          options={{
-            title: 'Login',
-            headerStyle: {
-              backgroundColor: '#E5E5E5',
-              elevation: 0,
-              shadowOpacity: 0,
-            },
-            headerTintColor: 'black',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Register"
-          component={RegisterScreen}
-          options={{
-            title: 'Register',
-            headerStyle: {
-              backgroundColor: '#E5E5E5',
-              elevation: 0,
-              shadowOpacity: 0,
-            },
-            headerTintColor: 'black',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="ForgotPassword"
-          component={ForgotPasswordScreen}
-          options={{
-            title: 'Forgot Password',
-            headerStyle: {
-              backgroundColor: '#E5E5E5',
-              elevation: 0,
-              shadowOpacity: 0,
-            },
-            headerTintColor: 'black',
-            headerTitleStyle: {
-              fontWeight: 'bold',
-            },
-          }}
-        />
-        <Stack.Screen
-          name="Dashboard"
+         <Stack.Screen
+           name="Login"
+           component={Login}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+
+         />
+         <Stack.Screen
+           name="Register"
+           component={Register}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+         />
+         <Stack.Screen
+           name="ForgotPassword"
+           component={ForgotPassword}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+         />
+         <Stack.Screen name="Dashboard"
           component={AppTab}
           options={{
             headerShown: false, // change this to `false`
@@ -89,6 +78,7 @@ const AppStack = () => {
     </NavigationContainer>
   );
 };
+
 
 function Tab1Screen({navigation}) {
   return (
@@ -105,27 +95,30 @@ const AppTab = ({navigation}) => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
-          /* https://oblador.github.io/react-native-vector-icons/ */
-          if (route.name === 'Dashboard') {
-            iconName = focused ? 'ios-search-circle' : 'ios-search';
-          } else if (route.name === 'Tab1') {
-            iconName = focused ? 'ios-heart-sharp' : 'ios-heart-outline';
-          } else if (route.name === 'MyPantry') {
-            iconName = focused ? 'ios-list-circle' : 'ios-list';
-          } else if (route.name === 'Profile') {
-            iconName = focused ? 'person' : 'person-outline';
-          }
+            /* https://oblador.github.io/react-native-vector-icons/ */
+            if (route.name === 'Dashboard') {
+              iconName = focused ? 'ios-search-circle' : 'ios-search';
+            } else if (route.name === 'Favorites') {
+              iconName = focused ? 'ios-heart-sharp' : 'ios-heart-outline';
+            } else if (route.name === 'MyPantry') {
+              iconName = focused ? 'ios-list-circle' : 'ios-list';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'person' : 'person-outline';
+            }
 
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-      })}
-      tabBarOptions={{
-        activeTintColor: 'black',
-        inactiveTintColor: 'gray',
-      }}>
-      <Tab.Screen name="Dashboard" component={DashboardScreen} />
-      <Tab.Screen name="Tab1" component={Tab1Screen} />
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: 'black',
+          inactiveTintColor: 'gray',
+        }}>
+      <Tab.Screen
+        name="Dashboard"
+        component={DashboardScreen}
+      />
+      <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

@@ -15,6 +15,10 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
 
+/* https://www.npmjs.com/package/react-native-dropdown-picker */
+import DropDownPicker from 'react-native-dropdown-picker';
+import Icon from 'react-native-vector-icons/Feather';
+
 const MyPantryScreen = ({navigation}) => {
   return (
     <View style={styles.backgroundContainer}>
@@ -493,6 +497,7 @@ const MyPantryScreen = ({navigation}) => {
         </View>
       </ImageBackground>
     </View>
+
   );
 };
 
