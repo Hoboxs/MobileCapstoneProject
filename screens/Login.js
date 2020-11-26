@@ -15,7 +15,7 @@ import {
   Platform,
 } from 'react-native';
 
-class Login extends React.Component {
+class LoginScreen extends React.Component {
 
   constructor({navigation}) {
     super();
@@ -169,4 +169,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Login;
+export default LoginScreen;

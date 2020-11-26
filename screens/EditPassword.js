@@ -13,48 +13,55 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const EditPasswordScreen = ({navigation}) => {
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-        <View style={styles.container}>
-           <View style={styles.searchContainer}>
-               <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                   <View style={styles.searchHeader}>
-                       <Text style={styles.searchText}>Edit Password</Text>
-                   </View>
-               </ImageBackground>
-           </View>
-           <View style={styles.profileContainer}>
-            <View style={styles.scroll}>
-               <View style={styles.inputView}>
-                 <Text>{"Current Password:                 "}
-                 <Text>**********</Text>
-                 </Text>
-               </View>
-               <View style={styles.inputView}>
-                 <Text>{"New Password:                      "}
-                 <Text>**********</Text>
-                 </Text>
-               </View>
-               <View style={styles.inputView}>
-                 <Text>{"Confirm New Password:       "}
-                 <Text>**********</Text>
-                 </Text>
-               </View>
-               <TouchableOpacity
-                 style={styles.editBtn}
-                 onPress={() => {
-                   navigation.navigate('Profile');
-                 }}>
-                 <Text style={styles.logoutText}>SAVE</Text>
-               </TouchableOpacity>
+class EditPasswordScreen extends React.Component {
+
+    constructor({navigation}) {
+      super();
+    }
+
+  render() {
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+             <View style={styles.searchContainer}>
+                 <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                     <View style={styles.searchHeader}>
+                         <Text style={styles.searchText}>Edit Password</Text>
+                     </View>
+                 </ImageBackground>
+             </View>
+             <View style={styles.profileContainer}>
+              <View style={styles.scroll}>
+                 <View style={styles.inputView}>
+                   <Text>{"Current Password:                 "}
+                   <Text>**********</Text>
+                   </Text>
+                 </View>
+                 <View style={styles.inputView}>
+                   <Text>{"New Password:                      "}
+                   <Text>**********</Text>
+                   </Text>
+                 </View>
+                 <View style={styles.inputView}>
+                   <Text>{"Confirm New Password:       "}
+                   <Text>**********</Text>
+                   </Text>
+                 </View>
+                 <TouchableOpacity
+                   style={styles.editBtn}
+                   onPress={() => {
+                     this.props.navigation.navigate('Profile');
+                   }}>
+                   <Text style={styles.logoutText}>SAVE</Text>
+                 </TouchableOpacity>
+            </View>
+            </View>
           </View>
-          </View>
-        </View>
-     </ImageBackground>
-  </View>
-  );
+       </ImageBackground>
+    </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -145,4 +152,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {EditPasswordScreen};
+export default EditPasswordScreen;

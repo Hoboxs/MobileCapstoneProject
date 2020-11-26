@@ -15,7 +15,7 @@ import {
   Platform,
 } from 'react-native';
 
-class ForgotPassword extends React.Component {
+class ForgotPasswordScreen extends React.Component {
 
   constructor({navigation}) {
     super();
@@ -121,4 +121,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ForgotPassword;
+export default ForgotPasswordScreen;

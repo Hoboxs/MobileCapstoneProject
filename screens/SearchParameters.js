@@ -15,191 +15,198 @@ import {
 } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-const SearchParametersScreen = ({ navigation }) => {
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-        <View style={styles.container}>
-          <View style={styles.searchContainer}>
-            <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-              <View style={styles.searchHeader}>
-                <Text style={styles.searchText}>Search Recipes</Text>
-                <View style={styles.inputView} >
-                  <TextInput
-                    style={styles.inputText}
-                    placeholder="Search"
-                    placeholderTextColor="lightgrey"
-                  />
+class SearchParametersScreen extends React.Component {
+
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>Search Recipes</Text>
+                  <View style={styles.inputView} >
+                    <TextInput
+                      style={styles.inputText}
+                      placeholder="Search"
+                      placeholderTextColor="lightgrey"
+                    />
+                  </View>
                 </View>
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={styles.scrollContainer}>
-            <ScrollView>
-              <Text style={styles.category}>DIET</Text>
-              <View style={styles.categories}>
-                <TouchableOpacity onPress={() => {navigation.navigate('SearchRecipes')}}>
-                  <View style={styles.myButton}>
-                    <Text>Vegan</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Vegetarian</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Pescatarian</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Plaeo</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Low-carb</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Healthy</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Gluten-free</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Dairy-free</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.category}>CUISINE</Text>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>French</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Italian</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Mexican</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Thai</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Indian</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Chinese</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Caribbean</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Greek</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Japanese</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.category}>DIFFICULTY</Text>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Expert</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Novice</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Intermidiate</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.category}>COST</Text>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Low to High</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>High to Low</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Under $30</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Under $15</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <Text style={styles.category}>TIME</Text>
-              <View style={styles.categories}>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Under1 hour</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Under half hour</Text>
-                  </View>
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <View style={styles.myButton}>
-                    <Text>Under 15 min</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <Text style={styles.category}>DIET</Text>
+                <View style={styles.categories}>
+                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('SearchRecipes')}}>
+                    <View style={styles.myButton}>
+                      <Text>Vegan</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Vegetarian</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Pescatarian</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Plaeo</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Low-carb</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Healthy</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Gluten-free</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Dairy-free</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.category}>CUISINE</Text>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>French</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Italian</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Mexican</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Thai</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Indian</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Chinese</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Caribbean</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Greek</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Japanese</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.category}>DIFFICULTY</Text>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Expert</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Novice</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Intermidiate</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.category}>COST</Text>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Low to High</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>High to Low</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Under $30</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Under $15</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <Text style={styles.category}>TIME</Text>
+                <View style={styles.categories}>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Under1 hour</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Under half hour</Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <View style={styles.myButton}>
+                      <Text>Under 15 min</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
 
 
-            </ ScrollView>
+              </ ScrollView>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+        </ImageBackground>
+      </View>
+    );
+  }
 };
 
 
@@ -279,4 +286,4 @@ const styles = StyleSheet.create({
 
 });
 
-export { SearchParametersScreen };
+export default SearchParametersScreen;

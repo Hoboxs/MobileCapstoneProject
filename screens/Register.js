@@ -15,7 +15,7 @@ import {
   Platform,
 } from 'react-native';
 
-class Register extends React.Component {
+class RegisterScreen extends React.Component {
 
   constructor({navigation}) {
     super();
@@ -232,4 +232,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Register;
+export default RegisterScreen;

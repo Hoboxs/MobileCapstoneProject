@@ -13,69 +13,76 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const ProfileScreen = ({navigation}) => {
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-        <View style={styles.container}>
-           <View style={styles.searchContainer}>
-               <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                   <View style={styles.searchHeader}>
-                       <Text style={styles.searchText}>Profile</Text>
-                   </View>
-               </ImageBackground>
-           </View>
-           <View style={styles.profileContainer}>
-            <View style={styles.scroll}>
-               <View style={styles.inputView}>
-                 <Text>{"Full Name:                               "}
-                 <Text>John Doe</Text>
-                 </Text>
-               </View>
-               <TouchableOpacity
-                 style={styles.editBtn}
-                 onPress={() => {
-                   navigation.navigate('EditName');
-                 }}>
-                 <Text style={styles.logoutText}>Edit Name</Text>
-               </TouchableOpacity>
-               <View style={styles.inputView}>
-                 <Text>{"Email:                  "}
-                 <Text>John.Doe@gmail.com</Text>
-                 </Text>
-               </View>
-               <TouchableOpacity
-                 style={styles.editBtn}
-                 onPress={() => {
-                   navigation.navigate('EditEmail');
-                 }}>
-                 <Text style={styles.logoutText}>Edit Email</Text>
-               </TouchableOpacity>
-               <View style={styles.inputView}>
-                 <Text>{"Password:                               "}
-                 <Text>**********</Text>
-                 </Text>
-              </View>
-              <TouchableOpacity
-                style={styles.editBtn}
-                onPress={() => {
-                  navigation.navigate('EditPassword');
-                }}>
-                <Text style={styles.logoutText}>Edit Password</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.logoutBtn}
-                onPress={() => {
-                  navigation.navigate('Login');
-                }}>
-                <Text style={styles.logoutText}>LOG OUT</Text>
-              </TouchableOpacity>
+class ProfileScreen extends React.Component {
+
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+             <View style={styles.searchContainer}>
+                 <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                     <View style={styles.searchHeader}>
+                         <Text style={styles.searchText}>Profile</Text>
+                     </View>
+                 </ImageBackground>
+             </View>
+             <View style={styles.profileContainer}>
+              <View style={styles.scroll}>
+                 <View style={styles.inputView}>
+                   <Text>{"Full Name:                               "}
+                   <Text>John Doe</Text>
+                   </Text>
+                 </View>
+                 <TouchableOpacity
+                   style={styles.editBtn}
+                   onPress={() => {
+                     this.props.navigation.navigate('EditName');
+                   }}>
+                   <Text style={styles.logoutText}>Edit Name</Text>
+                 </TouchableOpacity>
+                 <View style={styles.inputView}>
+                   <Text>{"Email:                  "}
+                   <Text>John.Doe@gmail.com</Text>
+                   </Text>
+                 </View>
+                 <TouchableOpacity
+                   style={styles.editBtn}
+                   onPress={() => {
+                     this.props.navigation.navigate('EditEmail');
+                   }}>
+                   <Text style={styles.logoutText}>Edit Email</Text>
+                 </TouchableOpacity>
+                 <View style={styles.inputView}>
+                   <Text>{"Password:                               "}
+                   <Text>**********</Text>
+                   </Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.editBtn}
+                  onPress={() => {
+                    this.props.navigation.navigate('EditPassword');
+                  }}>
+                  <Text style={styles.logoutText}>Edit Password</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.logoutBtn}
+                  onPress={() => {
+                    this.props.navigation.navigate('Login');
+                  }}>
+                  <Text style={styles.logoutText}>LOG OUT</Text>
+                </TouchableOpacity>
+            </View>
+            </View>
           </View>
-          </View>
-        </View>
-     </ImageBackground>
-  </View>
-  );
+       </ImageBackground>
+    </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -166,4 +173,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {ProfileScreen};
+export default ProfileScreen;

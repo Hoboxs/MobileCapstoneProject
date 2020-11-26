@@ -16,19 +16,19 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-import Login from '../screens/Login.js';
-import {DashboardScreen} from '../screens/Dashboard.js';
-import {ProfileScreen} from '../screens/Profile.js';
-import {MyPantryScreen} from '../screens/MyPantry.js';
-import {FavoritesScreen} from '../screens/Favorites.js';
-import {SearchRecipesScreen} from '../screens/SearchRecipes.js';
-import {StartRecipeScreen} from '../screens/StartRecipe.js';
-import {SearchParametersScreen} from '../screens/SearchParameters.js';
-import {EditNameScreen} from '../screens/EditName.js';
-import {EditEmailScreen} from '../screens/EditEmail.js';
-import {EditPasswordScreen} from '../screens/EditPassword.js';
-import ForgotPassword from '../screens/ForgotPassword.js';
-import Register from '../screens/Register.js';
+import LoginScreen from '../screens/Login.js';
+import DashboardScreen from '../screens/Dashboard.js';
+import ProfileScreen from '../screens/Profile.js';
+import MyPantryScreen from '../screens/MyPantry.js';
+import FavoritesScreen from '../screens/Favorites.js';
+import SearchRecipesScreen from '../screens/SearchRecipes.js';
+import StartRecipeScreen from '../screens/StartRecipe.js';
+import SearchParametersScreen from '../screens/SearchParameters.js';
+import EditNameScreen from '../screens/EditName.js';
+import EditEmailScreen from '../screens/EditEmail.js';
+import EditPasswordScreen from '../screens/EditPassword.js';
+import ForgotPasswordScreen from '../screens/ForgotPassword.js';
+import RegisterScreen from '../screens/Register.js';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -39,7 +39,7 @@ const AppStack = () => {
       <Stack.Navigator>
          <Stack.Screen
            name="Login"
-           component={Login}
+           component={LoginScreen}
            options={{
                title: '',
                headerStyle: {
@@ -52,7 +52,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="Register"
-           component={Register}
+           component={RegisterScreen}
            options={{
                title: '',
                headerStyle: {
@@ -64,7 +64,7 @@ const AppStack = () => {
          />
          <Stack.Screen
            name="ForgotPassword"
-           component={ForgotPassword}
+           component={ForgotPasswordScreen}
            options={{
                title: '',
                headerStyle: {

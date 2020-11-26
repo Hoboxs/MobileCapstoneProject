@@ -14,84 +14,91 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const SearchRecipesScreen = ({navigation}) => {
-   return (
-     <View style={styles.backgroundContainer}>
-        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-            <View style={styles.container}>
-                <View style={styles.searchContainer}>
-                    <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                        <View style={styles.searchHeader}>
-                            <Text style={styles.searchText}>Search Recipes</Text>
-                            <View style={styles.inputView} >
-                                <TextInput
-                                  style={styles.inputText}
-                                  placeholder="Search"
-                                  placeholderTextColor="lightgrey"
-                                />
-                            </View>
-                        </View>
-                    </ImageBackground>
-                </View>
-            <View style={styles.scrollContainer}>
-                <ScrollView>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>NEWLY UPLOADED</Text>
-                        <ScrollView horizontal>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search1.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search2.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search3.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>FAN FAVOURITES</Text>
-                        <ScrollView horizontal>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search4.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search5.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search6.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>CHEF'S SELECTION</Text>
-                        <ScrollView horizontal>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search7.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search8.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/search/search9.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                </ ScrollView>
-            </View>
-        </View>
-      </ImageBackground>
-     </View>
-  );
+class SearchRecipesScreen extends React.Component {
+
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
+     return (
+       <View style={styles.backgroundContainer}>
+          <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+              <View style={styles.container}>
+                  <View style={styles.searchContainer}>
+                      <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                          <View style={styles.searchHeader}>
+                              <Text style={styles.searchText}>Search Recipes</Text>
+                              <View style={styles.inputView} >
+                                  <TextInput
+                                    style={styles.inputText}
+                                    placeholder="Search"
+                                    placeholderTextColor="lightgrey"
+                                  />
+                              </View>
+                          </View>
+                      </ImageBackground>
+                  </View>
+              <View style={styles.scrollContainer}>
+                  <ScrollView>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+                          <ScrollView horizontal>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search1.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search2.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search3.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>FAN FAVOURITES</Text>
+                          <ScrollView horizontal>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search4.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search5.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search6.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>{"CHEF'S SELECTION"}</Text>
+                          <ScrollView horizontal>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search7.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search8.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/search/search9.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                  </ ScrollView>
+              </View>
+          </View>
+        </ImageBackground>
+       </View>
+    );
+  }
 };
 
 
@@ -155,4 +162,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { SearchRecipesScreen };
+export default SearchRecipesScreen;

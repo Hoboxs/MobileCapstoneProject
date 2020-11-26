@@ -13,38 +13,45 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const EditEmailScreen = ({navigation}) => {
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-        <View style={styles.container}>
-           <View style={styles.searchContainer}>
-               <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                   <View style={styles.searchHeader}>
-                       <Text style={styles.searchText}>Edit Email</Text>
-                   </View>
-               </ImageBackground>
-           </View>
-           <View style={styles.profileContainer}>
-            <View style={styles.scroll}>
-                <View style={styles.inputView}>
-                  <Text>{"Email:                  "}
-                  <Text>John.Doe@gmail.com</Text>
-                  </Text>
-                </View>
-               <TouchableOpacity
-                 style={styles.editBtn}
-                 onPress={() => {
-                   navigation.navigate('Profile');
-                 }}>
-                 <Text style={styles.logoutText}>SAVE</Text>
-               </TouchableOpacity>
+class EditEmailScreen extends React.Component {
+
+    constructor({navigation}) {
+      super();
+    }
+
+  render() {
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+             <View style={styles.searchContainer}>
+                 <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                     <View style={styles.searchHeader}>
+                         <Text style={styles.searchText}>Edit Email</Text>
+                     </View>
+                 </ImageBackground>
+             </View>
+             <View style={styles.profileContainer}>
+              <View style={styles.scroll}>
+                  <View style={styles.inputView}>
+                    <Text>{"Email:                  "}
+                    <Text>John.Doe@gmail.com</Text>
+                    </Text>
+                  </View>
+                 <TouchableOpacity
+                   style={styles.editBtn}
+                   onPress={() => {
+                     this.props.navigation.navigate('Profile');
+                   }}>
+                   <Text style={styles.logoutText}>SAVE</Text>
+                 </TouchableOpacity>
+            </View>
+            </View>
           </View>
-          </View>
-        </View>
-     </ImageBackground>
-  </View>
-  );
+       </ImageBackground>
+    </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -135,4 +142,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {EditEmailScreen};
+export default EditEmailScreen;

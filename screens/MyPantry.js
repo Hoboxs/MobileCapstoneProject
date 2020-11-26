@@ -17,486 +17,493 @@ import {
 import DropDownPicker from 'react-native-dropdown-picker';
 import Icon from 'react-native-vector-icons/Feather';
 
-const MyPantryScreen = ({navigation}) => {
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground
-        source={require('../images/background/light-wood.jpg')}
-        style={styles.image}>
-        <View style={styles.container}>
-          <View style={styles.searchContainer}>
-            <ImageBackground
-              source={require('../images/background/dark-wood.jpg')}
-              style={styles.image}>
-              <View style={styles.searchHeader}>
-                <Text style={styles.searchText}>My Pantry</Text>
-                <View style={styles.inputView}>
-                  <TextInput
-                    style={styles.inputText}
-                    placeholder="Search Ingredients"
-                    placeholderTextColor="lightgrey"
-                  />
-                </View>
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={styles.scrollContainer}>
-            <ScrollView>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/dairy-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'butter',
-                          value: 'butter',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'cheddar',
-                          value: 'cheddar',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'milk',
-                          value: 'milk',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      arrowSize={25}
-                      placeholder={'Dairy'}
-                      placeholderStyle={styles.searchText}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/broccoli-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'broccoli',
-                          value: 'broccoli',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'carrots',
-                          value: 'carrots',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Vegetables'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/fruit-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'apples',
-                          value: 'apples',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'bananas',
-                          value: 'bananas',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Fruits'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/grains-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'bread',
-                          value: 'bread',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'wheat',
-                          value: 'wheat',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Grains'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/meat-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'chicken',
-                          value: 'chicken',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'beef',
-                          value: 'beef',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Meat'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/seafood-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'squid',
-                          value: 'squid',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'salmon',
-                          value: 'salmon',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Seafood'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/spices-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'cinnamon',
-                          value: 'cinnamon',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'pepper',
-                          value: 'pepper',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Spices'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/sweetners-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'sugar',
-                          value: 'sugar',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'honey',
-                          value: 'honey',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Sweeteners'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-              <View style={styles.scroll}>
-                <ImageBackground
-                  source={require('../images/background/dark-wood.jpg')}
-                  style={styles.backgroundImage}>
-                  <Text style={styles.searchText}>
-                    <Image
-                      style={styles.icon}
-                      source={require('../images/pantry/nuts-icon.jpg')}
-                    />
-                    <DropDownPicker
-                      items={[
-                        {
-                          label: 'almonds',
-                          value: 'almonds',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                        {
-                          label: 'cashews',
-                          value: 'cashews',
-                          icon: () => (
-                            <Icon name="trash" size={18} color="black" />
-                          ),
-                        },
-                      ]}
-                      defaultValue=""
-                      containerStyle={{height: 20}}
-                      style={{
-                        backgroundColor: 'transparent',
-                        color: 'white',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                        borderRadius: 4,
-                      }}
-                      itemStyle={{
-                        justifyContent: 'flex-start',
-                        backgroundColor: 'white',
-                      }}
-                      dropDownStyle={{backgroundColor: 'white'}}
-                      arrowStyle={{backgroundColor: 'transparent'}}
-                      arrowColor="white"
-                      placeholder={'Nuts'}
-                      placeholderStyle={styles.searchText}
-                      arrowSize={25}
-                    />
-                  </Text>
-                </ImageBackground>
-              </View>
-            </ScrollView>
-          </View>
-        </View>
-      </ImageBackground>
-    </View>
+class MyPantryScreen extends React.Component {
 
-  );
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground
+          source={require('../images/background/light-wood.jpg')}
+          style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground
+                source={require('../images/background/dark-wood.jpg')}
+                style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>My Pantry</Text>
+                  <View style={styles.inputView}>
+                    <TextInput
+                      style={styles.inputText}
+                      placeholder="Search Ingredients"
+                      placeholderTextColor="lightgrey"
+                    />
+                  </View>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/dairy-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'butter',
+                            value: 'butter',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'cheddar',
+                            value: 'cheddar',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'milk',
+                            value: 'milk',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        arrowSize={25}
+                        placeholder={'Dairy'}
+                        placeholderStyle={styles.searchText}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/broccoli-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'broccoli',
+                            value: 'broccoli',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'carrots',
+                            value: 'carrots',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Vegetables'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/fruit-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'apples',
+                            value: 'apples',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'bananas',
+                            value: 'bananas',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Fruits'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/grains-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'bread',
+                            value: 'bread',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'wheat',
+                            value: 'wheat',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Grains'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/meat-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'chicken',
+                            value: 'chicken',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'beef',
+                            value: 'beef',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Meat'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/seafood-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'squid',
+                            value: 'squid',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'salmon',
+                            value: 'salmon',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Seafood'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/spices-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'cinnamon',
+                            value: 'cinnamon',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'pepper',
+                            value: 'pepper',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Spices'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/sweetners-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'sugar',
+                            value: 'sugar',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'honey',
+                            value: 'honey',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Sweeteners'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+                <View style={styles.scroll}>
+                  <ImageBackground
+                    source={require('../images/background/dark-wood.jpg')}
+                    style={styles.backgroundImage}>
+                    <Text style={styles.searchText}>
+                      <Image
+                        style={styles.icon}
+                        source={require('../images/pantry/nuts-icon.jpg')}
+                      />
+                      <DropDownPicker
+                        items={[
+                          {
+                            label: 'almonds',
+                            value: 'almonds',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                          {
+                            label: 'cashews',
+                            value: 'cashews',
+                            icon: () => (
+                              <Icon name="trash" size={18} color="black" />
+                            ),
+                          },
+                        ]}
+                        defaultValue=""
+                        containerStyle={{height: 20}}
+                        style={{
+                          backgroundColor: 'transparent',
+                          color: 'white',
+                          borderColor: 'transparent',
+                          borderWidth: 1,
+                          borderRadius: 4,
+                        }}
+                        itemStyle={{
+                          justifyContent: 'flex-start',
+                          backgroundColor: 'white',
+                        }}
+                        dropDownStyle={{backgroundColor: 'white'}}
+                        arrowStyle={{backgroundColor: 'transparent'}}
+                        arrowColor="white"
+                        placeholder={'Nuts'}
+                        placeholderStyle={styles.searchText}
+                        arrowSize={25}
+                      />
+                    </Text>
+                  </ImageBackground>
+                </View>
+              </ScrollView>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
+
+    );
+  }
 };
 
 const styles = StyleSheet.create({
@@ -576,4 +583,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export {MyPantryScreen};
+export default MyPantryScreen;

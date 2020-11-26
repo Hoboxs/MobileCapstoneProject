@@ -14,90 +14,97 @@ import {
   ImageBackground,
 } from 'react-native';
 
-const DashboardScreen = ({navigation}) => {
-   return (
-     <View style={styles.backgroundContainer}>
-        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-            <View style={styles.container}>
-                <View style={styles.searchContainer}>
-                    <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                        <View style={styles.searchHeader}>
-                            <Text style={styles.searchText}>Discover</Text>
-                            <View style={styles.inputView} >
-                                <TextInput
-                                  style={styles.inputText}
-                                  placeholder="Search"
-                                  placeholderTextColor="lightgrey"
-                                  returnKeyType = "search"
-                                  onSubmitEditing={() => {
-                                    navigation.navigate('SearchParameters');
-                                    }}
-                                />
-                            </View>
-                        </View>
-                    </ImageBackground>
-                </View>
-            <View style={styles.scrollContainer}>
-                <ScrollView>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
-                        <ScrollView horizontal>
-                          <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food8.jpg")}
-                            />
-                          </TouchableOpacity>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food2.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food3.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>USE YOUR BROCCOLI</Text>
-                        <ScrollView horizontal>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food4.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food5.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food6.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                    <View style={styles.scroll}>
-                        <Text style={styles.headerText}>USE YOUR TOFU</Text>
-                        <ScrollView horizontal>
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food7.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food1.jpg")}
-                            />
-                            <Image
-                              style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                              source={require("../images/dashboard/food1.jpg")}
-                            />
-                        </ScrollView>
-                    </View>
-                </ ScrollView>
-            </View>
-        </View>
-      </ImageBackground>
-     </View>
-  );
+class DashboardScreen extends React.Component {
+
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
+     return (
+       <View style={styles.backgroundContainer}>
+          <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+              <View style={styles.container}>
+                  <View style={styles.searchContainer}>
+                      <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                          <View style={styles.searchHeader}>
+                              <Text style={styles.searchText}>Discover</Text>
+                              <View style={styles.inputView} >
+                                  <TextInput
+                                    style={styles.inputText}
+                                    placeholder="Search"
+                                    placeholderTextColor="lightgrey"
+                                    returnKeyType = "search"
+                                    onSubmitEditing={() => {
+                                      this.props.navigation.navigate('SearchParameters');
+                                      }}
+                                  />
+                              </View>
+                          </View>
+                      </ImageBackground>
+                  </View>
+              <View style={styles.scrollContainer}>
+                  <ScrollView>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
+                          <ScrollView horizontal>
+                            <TouchableOpacity onPress={()=>{this.props.navigation.navigate('StartRecipe');}}>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food8.jpg")}
+                              />
+                            </TouchableOpacity>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food2.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food3.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>USE YOUR BROCCOLI</Text>
+                          <ScrollView horizontal>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food4.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food5.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food6.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                      <View style={styles.scroll}>
+                          <Text style={styles.headerText}>USE YOUR TOFU</Text>
+                          <ScrollView horizontal>
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food7.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food1.jpg")}
+                              />
+                              <Image
+                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                                source={require("../images/dashboard/food1.jpg")}
+                              />
+                          </ScrollView>
+                      </View>
+                  </ ScrollView>
+              </View>
+          </View>
+        </ImageBackground>
+       </View>
+    );
+  }
 };
 
 
@@ -160,4 +167,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export { DashboardScreen };
+export default DashboardScreen;

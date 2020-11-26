@@ -15,7 +15,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const StartRecipeScreen = ({ navigation }) => {
+class StartRecipeScreen extends React.Component {
+
+  constructor({navigation}) {
+    super();
+  }
+
+  render() {
     return (
         <View style={styles.backgroundContainer}>
             <View style={styles.container}>
@@ -62,9 +68,9 @@ const StartRecipeScreen = ({ navigation }) => {
                         </Text>
                         <Text>
                             <Icon name="check" size={18} color="#7C9262"/>
-                             {" "} Place chicken in a roasting pan, and season generously 
-                             inside and out with salt and pepper. Sprinkle inside and 
-                             out with onion powder. Place 3 tablespoons margarine 
+                             {" "} Place chicken in a roasting pan, and season generously
+                             inside and out with salt and pepper. Sprinkle inside and
+                             out with onion powder. Place 3 tablespoons margarine
                              in the chicken cavity. Arrange dollops of the remaining
                              margarine around the chicken's exterior.Cut the celery
                              into 3 or 4 pieces, and place in the chicken cavity.
@@ -84,6 +90,7 @@ const StartRecipeScreen = ({ navigation }) => {
             </View>
         </View>
     );
+  }
 };
 
 
@@ -109,7 +116,7 @@ const styles = StyleSheet.create({
         flex: 3,
         marginHorizontal:18
     },
-    
+
     headerText: {
         height: 20,
         fontWeight: 'bold',
@@ -143,4 +150,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export { StartRecipeScreen };
+export default StartRecipeScreen;
