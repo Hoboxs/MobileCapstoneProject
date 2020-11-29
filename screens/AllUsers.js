@@ -9,7 +9,8 @@ var db = openDatabase({ name: 'UserDatabase.db' });
 
 const AllUsersScreen = () => {
 
-  let [flatListItems, setFlatListItems] = useState([]);
+  let [flatListUserItems, setFlatListUserItems] = useState([]);
+  let [flatListRecipeItems, setFlatListRecipeItems] = useState([]);
 
   useEffect(() => {
     db.transaction((tx) => {
@@ -20,7 +21,17 @@ const AllUsersScreen = () => {
           var temp = [];
           for (let i = 0; i < results.rows.length; ++i)
             temp.push(results.rows.item(i));
-          setFlatListItems(temp);
+          setFlatListUserItems(temp);
+        }
+      );
+      tx.executeSql(
+        'SELECT * FROM table_recipe',
+        [],
+        (tx, results) => {
+          var temp = [];
+          for (let i = 0; i < results.rows.length; ++i)
+            temp.push(results.rows.item(i));
+          setFlatListRecipeItems(temp);
         }
       );
     });
@@ -38,29 +49,52 @@ const AllUsersScreen = () => {
     );
   };
 
-  let listItemView = (item) => {
+  let listUserItemView = (item) => {
     return (
       <View
         key={item.user_id}
         style={{ backgroundColor: 'white', padding: 20 }}>
         <Text>Id: {item.user_id}</Text>
         <Text>Name: {item.user_name}</Text>
-        <Text>Contact: {item.user_email}</Text>
-        <Text>Address: {item.user_password}</Text>
+        <Text>Email: {item.user_email}</Text>
+        <Text>Password: {item.user_password}</Text>
       </View>
     );
   };
 
+  let listRecipeItemView = (item) => {
+    return (
+      <View
+        key={item.recipe_id}
+        style={{ backgroundColor: 'white', padding: 20 }}>
+        <Text>Id: {item.recipe_id}</Text>
+        <Text>Title: {item.recipe_title}</Text>
+        <Text>Level: {item.recipe_level}</Text>
+        <Text>Cook Time: {item.recipe_cookTime}</Text>
+        <Text>Ingredients: {item.recipe_ingredients}</Text>
+        <Text>Directions: {item.recipe_description}</Text>
+        <Text>Image URL: {item.recipe_imageUrl}</Text>
+      </View>
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={{ flex: 1, backgroundColor: 'white' }}>
         <View style={{ flex: 1 }}>
+          <Text>Users: </Text>
           <FlatList
-            data={flatListItems}
+            data={flatListUserItems}
             ItemSeparatorComponent={listViewItemSeparator}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => listItemView(item)}
+            renderItem={({ item }) => listUserItemView(item)}
+          />
+          <Text>Recipes: </Text>
+          <FlatList
+            data={flatListRecipeItems}
+            ItemSeparatorComponent={listViewItemSeparator}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({ item }) => listRecipeItemView(item)}
           />
         </View>
       </View>

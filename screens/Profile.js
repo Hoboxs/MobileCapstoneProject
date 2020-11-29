@@ -35,7 +35,7 @@ class ProfileScreen extends React.Component {
               <View style={styles.scroll}>
                  <View style={styles.inputView}>
                    <Text>{"Full Name:                               "}
-                   <Text>John Doe</Text>
+                   <Text>{global.name}</Text>
                    </Text>
                  </View>
                  <TouchableOpacity
@@ -47,7 +47,7 @@ class ProfileScreen extends React.Component {
                  </TouchableOpacity>
                  <View style={styles.inputView}>
                    <Text>{"Email:                  "}
-                   <Text>John.Doe@gmail.com</Text>
+                   <Text>{global.email}</Text>
                    </Text>
                  </View>
                  <TouchableOpacity
@@ -59,7 +59,7 @@ class ProfileScreen extends React.Component {
                  </TouchableOpacity>
                  <View style={styles.inputView}>
                    <Text>{"Password:                               "}
-                   <Text>**********</Text>
+                   <Text>{global.password}</Text>
                    </Text>
                 </View>
                 <TouchableOpacity

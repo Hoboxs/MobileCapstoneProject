@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,30 +17,27 @@ import {
 
 import { openDatabase } from 'react-native-sqlite-storage';
 
-class RegisterScreen extends React.Component {
+var db = openDatabase({ name: 'UserDatabase.db' });
 
-  constructor({navigation}) {
-    super();
-    this.db = openDatabase({ name: 'UserDatabase.db' });
-    this.state = {
-      fullName: '',
-      fullNameError: '',
-      email: '',
-      emailError: '',
-      password: '',
-      passwordError: '',
-      confirmPassword: '',
-      confirmPasswordError: '',
-    }
-  }
+const RegisterScreen = ({ navigation }) => {
 
-  register_user() {
-    console.log(this.state.fullName, this.state.email, this.state.password);
+  let [fullName, setFullName] = useState('');
+  let [fullNameError, setFullNameError] = useState('');
+  let [email, setEmail] = useState('');
+  let [emailError, setEmailError] = useState('');
+  let [password, setPassword] = useState('');
+  let [passwordError, setPasswordError] = useState('');
+  let [confirmPassword, setConfirmPassword] = useState('');
+  let [confirmPasswordError, setConfirmPasswordError] = useState('');
 
-    this.db.transaction((tx) => {
+
+  let register_user = () => {
+    console.log(fullName, email, password);
+
+    db.transaction((tx) => {
       tx.executeSql(
         'INSERT INTO table_user (user_name, user_email, user_password) VALUES (?,?,?)',
-        [this.state.fullName, this.state.email, this.state.password],
+        [fullName, email, password],
         (tx, results) => {
           console.log('Results', results.rowsAffected);
           if (results.rowsAffected > 0) {
@@ -50,7 +47,7 @@ class RegisterScreen extends React.Component {
               [
                 {
                   text: 'Ok',
-                  onPress: () => this.props.navigation.navigate('Login'),
+                  onPress: () => navigation.navigate('Login'),
                 },
               ],
               { cancelable: false }
@@ -61,12 +58,12 @@ class RegisterScreen extends React.Component {
     });
   };
 
-  onSubmit(){
-    this.fullNameValidator();
-    this.emailValidator();
-    this.passwordValidator();
-    this.confirmPasswordValidator();
-    if(this.fullNameValidator() && this.emailValidator() && this.passwordValidator() && this.confirmPasswordValidator()){
+  let onSubmit = () => {
+    fullNameValidator();
+    emailValidator();
+    passwordValidator();
+    confirmPasswordValidator();
+    if(fullNameValidator() && emailValidator() && passwordValidator() && confirmPasswordValidator()){
       /*
       Alert.alert(
         "",
@@ -76,55 +73,54 @@ class RegisterScreen extends React.Component {
       );
       this.props.navigation.navigate('Login');
       */
-      this.register_user();
+      register_user();
     }
-  }
+  };
 
-  fullNameValidator(){
-    if(this.state.fullName==""){
-      this.setState({fullNameError:"Enter a Valid Full Name"})
+  let fullNameValidator = () => {
+    if(fullName==""){
+      setFullNameError("Enter a Valid Full Name");
     } else{
-      this.setState({fullNameError:""})
+      setFullNameError("");
       return true;
     }
     return false;
-  }
+  };
 
-  emailValidator(){
-    if(this.state.email==""){
-      this.setState({emailError:"Enter a Valid Email"})
-    } else if(this.state.email.indexOf('@') == -1 ){
-      this.setState({emailError:"Enter a Valid Email"})
+  let emailValidator = () => {
+    if(email==""){
+      setEmailError("Enter a Valid Email");
+    } else if(email.indexOf('@') == -1 ){
+      setEmailError("Enter a Valid Email");
     } else{
-      this.setState({emailError:""})
+      setEmailError("");
       return true;
     }
     return false;
-  }
+  };
 
-  passwordValidator(){
-    if(this.state.password==""){
-      this.setState({passwordError:"Enter a Valid Password"})
+  let passwordValidator = () => {
+    if(password==""){
+      setPasswordError("Enter a Valid Password");
     } else{
-      this.setState({passwordError:""})
+      setPasswordError("");
       return true;
     }
     return false;
-  }
+  };
 
-  confirmPasswordValidator(){
-    if(this.state.confirmPassword==""){
-      this.setState({confirmPasswordError:"Enter a Valid Password"})
-    } else if(this.state.password != this.state.confirmPassword){
-      this.setState({confirmPasswordError:"Passwords Must Match"})
+  let confirmPasswordValidator = () => {
+    if(confirmPassword==""){
+      setConfirmPasswordError("Enter a Valid Password");
+    } else if(password != confirmPassword){
+      setConfirmPasswordError("Passwords Must Match");
     }else{
-      this.setState({confirmPasswordError:""})
+      setConfirmPasswordError("");
       return true;
     }
     return false;
-  }
+  };
 
-  render() {
    return (
      <View style={styles.backgroundContainer}>
       <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -138,62 +134,62 @@ class RegisterScreen extends React.Component {
            </Text>
          </View>
          <View style={styles.errorText}>
-           <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.fullNameError}</Text>
+           <Text style={{color: 'red', fontWeight: 'bold'}}>{fullNameError}</Text>
          </View>
          <View style={styles.inputView} >
            <TextInput
              style={styles.inputText}
              placeholder="Full Name"
-             onBlur={()=>this.fullNameValidator()}
+             onBlur={()=>fullNameValidator()}
              placeholderTextColor="lightgrey"
-             onChangeText={(text) => {this.setState({fullName: text})}}
+             onChangeText={(text) => {setFullName(text)}}
            />
          </View>
          <View style={styles.errorText}>
-           <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.emailError}</Text>
+           <Text style={{color: 'red', fontWeight: 'bold'}}>{emailError}</Text>
          </View>
         <View style={styles.inputView} >
           <TextInput
             style={styles.inputText}
             placeholder="Email"
-            onBlur={()=>this.emailValidator()}
+            onBlur={()=>emailValidator()}
             placeholderTextColor="lightgrey"
-            onChangeText={(text) => {this.setState({email: text})}}
+            onChangeText={(text) => {setEmail(text)}}
           />
         </View>
         <View style={styles.errorText}>
-          <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.passwordError}</Text>
+          <Text style={{color: 'red', fontWeight: 'bold'}}>{passwordError}</Text>
         </View>
         <View style={styles.inputView} >
           <TextInput
             secureTextEntry
             style={styles.inputText}
             placeholder="Password"
-            onBlur={()=>this.passwordValidator()}
+            onBlur={()=>passwordValidator()}
             placeholderTextColor="lightgrey"
-            onChangeText={(text) => {this.setState({password: text})}}
+            onChangeText={(text) => {setPassword(text)}}
           />
         </View>
         <View style={styles.errorText}>
-          <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.confirmPasswordError}</Text>
+          <Text style={{color: 'red', fontWeight: 'bold'}}>{confirmPasswordError}</Text>
         </View>
         <View style={styles.inputView} >
           <TextInput
             secureTextEntry
             style={styles.inputText}
             placeholder="Confirm Password"
-            onBlur={()=>this.confirmPasswordValidator()}
+            onBlur={()=>confirmPasswordValidator()}
             placeholderTextColor="lightgrey"
-            onChangeText={(text) => {this.setState({confirmPassword: text})}}
+            onChangeText={(text) => {setConfirmPassword(text)}}
           />
         </View>
 
-        <TouchableOpacity style={styles.registerBtn} onPress={() => this.onSubmit()}>
+        <TouchableOpacity style={styles.registerBtn} onPress={() => onSubmit()}>
           <Text style={styles.registerText}>REGISTER</Text>
         </TouchableOpacity>
         <Text style={styles.loginText}> {"Already have an account? "}
           <Text style={styles.signupText} onPress={()=>{
-            this.props.navigation.navigate('Login');
+            navigation.navigate('Login');
             }}>
           Sign In</Text>
         </Text>
@@ -201,7 +197,6 @@ class RegisterScreen extends React.Component {
       </ImageBackground>
       </View>
   );
-}
 };
 
 
