@@ -1,39 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import {
-FlatList, Text, View, SafeAreaView
-} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {FlatList, Text, View, SafeAreaView} from 'react-native';
 
-import { openDatabase } from 'react-native-sqlite-storage';
+import {openDatabase} from 'react-native-sqlite-storage';
 
-var db = openDatabase({ name: 'UserDatabase.db' });
+var db = openDatabase({name: 'UserDatabase.db'});
 
 const AllUsersScreen = () => {
-
   let [flatListUserItems, setFlatListUserItems] = useState([]);
   let [flatListRecipeItems, setFlatListRecipeItems] = useState([]);
 
   useEffect(() => {
     db.transaction((tx) => {
-      tx.executeSql(
-        'SELECT * FROM table_user',
-        [],
-        (tx, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i)
-            temp.push(results.rows.item(i));
-          setFlatListUserItems(temp);
+      tx.executeSql('SELECT * FROM table_user', [], (tx, results) => {
+        var temp = [];
+        for (let i = 0; i < results.rows.length; ++i) {
+          temp.push(results.rows.item(i));
         }
-      );
-      tx.executeSql(
-        'SELECT * FROM table_recipe',
-        [],
-        (tx, results) => {
-          var temp = [];
-          for (let i = 0; i < results.rows.length; ++i)
-            temp.push(results.rows.item(i));
-          setFlatListRecipeItems(temp);
+        setFlatListUserItems(temp);
+      });
+      tx.executeSql('SELECT * FROM table_recipe', [], (tx, results) => {
+        var temp = [];
+        for (let i = 0; i < results.rows.length; ++i) {
+          temp.push(results.rows.item(i));
         }
-      );
+        setFlatListRecipeItems(temp);
+      });
     });
   }, []);
 
@@ -43,7 +34,7 @@ const AllUsersScreen = () => {
         style={{
           height: 0.2,
           width: '100%',
-          backgroundColor: '#808080'
+          backgroundColor: '#808080',
         }}
       />
     );
@@ -51,9 +42,7 @@ const AllUsersScreen = () => {
 
   let listUserItemView = (item) => {
     return (
-      <View
-        key={item.user_id}
-        style={{ backgroundColor: 'white', padding: 20 }}>
+      <View key={item.user_id} style={{backgroundColor: 'white', padding: 20}}>
         <Text>Id: {item.user_id}</Text>
         <Text>Name: {item.user_name}</Text>
         <Text>Email: {item.user_email}</Text>
@@ -66,7 +55,7 @@ const AllUsersScreen = () => {
     return (
       <View
         key={item.recipe_id}
-        style={{ backgroundColor: 'white', padding: 20 }}>
+        style={{backgroundColor: 'white', padding: 20}}>
         <Text>Id: {item.recipe_id}</Text>
         <Text>Title: {item.recipe_title}</Text>
         <Text>Level: {item.recipe_level}</Text>
@@ -79,22 +68,22 @@ const AllUsersScreen = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-        <View style={{ flex: 1 }}>
+    <SafeAreaView style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
+        <View style={{flex: 1}}>
           <Text>Users: </Text>
           <FlatList
             data={flatListUserItems}
             ItemSeparatorComponent={listViewItemSeparator}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => listUserItemView(item)}
+            renderItem={({item}) => listUserItemView(item)}
           />
           <Text>Recipes: </Text>
           <FlatList
             data={flatListRecipeItems}
             ItemSeparatorComponent={listViewItemSeparator}
             keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => listRecipeItemView(item)}
+            renderItem={({item}) => listRecipeItemView(item)}
           />
         </View>
       </View>
