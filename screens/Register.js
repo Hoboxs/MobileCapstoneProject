@@ -15,10 +15,13 @@ import {
   Platform,
 } from 'react-native';
 
+import { openDatabase } from 'react-native-sqlite-storage';
+
 class RegisterScreen extends React.Component {
 
   constructor({navigation}) {
     super();
+    this.db = openDatabase({ name: 'UserDatabase.db' });
     this.state = {
       fullName: '',
       fullNameError: '',
@@ -31,12 +34,40 @@ class RegisterScreen extends React.Component {
     }
   }
 
+  register_user() {
+    console.log(this.state.fullName, this.state.email, this.state.password);
+
+    this.db.transaction((tx) => {
+      tx.executeSql(
+        'INSERT INTO table_user (user_name, user_email, user_password) VALUES (?,?,?)',
+        [this.state.fullName, this.state.email, this.state.password],
+        (tx, results) => {
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            Alert.alert(
+              'Success',
+              'You are Registered Successfully',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => this.props.navigation.navigate('Login'),
+                },
+              ],
+              { cancelable: false }
+            );
+          } else alert('Registration Failed');
+        }
+      );
+    });
+  };
+
   onSubmit(){
     this.fullNameValidator();
     this.emailValidator();
     this.passwordValidator();
     this.confirmPasswordValidator();
     if(this.fullNameValidator() && this.emailValidator() && this.passwordValidator() && this.confirmPasswordValidator()){
+      /*
       Alert.alert(
         "",
         "Your account has been created.",
@@ -44,6 +75,8 @@ class RegisterScreen extends React.Component {
         { cancelable: false }
       );
       this.props.navigation.navigate('Login');
+      */
+      this.register_user();
     }
   }
 
