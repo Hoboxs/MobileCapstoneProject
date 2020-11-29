@@ -27,6 +27,7 @@ const MyPantryScreen = ({navigation}) => {
   let [inputIngredientId, setInputIngredientId] = useState('');
   let [ingredientData, setIngredientData] = useState({});
   let [storedIngredientData, setStoredIngredientData] = useState({});
+  let [inputStoredIngredientName, setInputStoredIngredientName] = useState('');
 
   let searchIngredient = () => {
     console.log(inputIngredientId);
@@ -62,13 +63,21 @@ const MyPantryScreen = ({navigation}) => {
 
   let listStoredIngredientItemView = (item) => {
     return (
-      <View
-        key={item.stored_ingredient_id}
-        style={{backgroundColor: 'white', padding: 20}}>
-        <Text>Id: {item.user_id}</Text>
-        <Text>Name: {item.user_name}</Text>
-        <Text>Email: {item.user_email}</Text>
-        <Text>Password: {item.user_password}</Text>
+      <View key={item.stored_ingredient_id} style={styles.scroll}>
+        <ImageBackground
+          source={require('../images/background/dark-wood.jpg')}
+          style={styles.backgroundImage}>
+          <Image
+            style={styles.icon}
+            source={require('../images/pantry/dairy-icon.jpg')}
+          />
+          <Text style={styles.searchText}>
+            {item.stored_ingredient_name}
+          </Text>
+          <Text style={styles.searchText}>
+            Category: {item.stored_category_name}
+          </Text>
+        </ImageBackground>
       </View>
     );
   };
@@ -77,8 +86,8 @@ const MyPantryScreen = ({navigation}) => {
     setStoredIngredientData({});
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_stored_ingredients where category_name = ?',
-        ['dairy'],
+        'SELECT * FROM table_stored_ingredients order by "stored_category_name"',
+        [],
         (tx, results) => {
           let temp = [];
           for (let i = 0; i < results.rows.length; ++i) {
@@ -112,6 +121,32 @@ const MyPantryScreen = ({navigation}) => {
             alert('Attempt to add ingredient Failed');
           }
         },
+      );
+    });
+  };
+
+  let deleteIngredient = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+          'DELETE FROM table_stored_ingredients WHERE stored_ingredient_name = ?;',
+          [inputStoredIngredientName],
+          (tx, results) => {
+            console.log('Results', results.rowsAffected);
+            if (results.rowsAffected > 0) {
+              Alert.alert(
+                  'Success',
+                  'You have deleted an ingredient to your pantry',
+                  [
+                    {
+                      text: 'Ok',
+                    },
+                  ],
+                  {cancelable: false},
+              );
+            } else {
+              alert('Attempt to delete ingredient Failed');
+            }
+          },
       );
     });
   };
@@ -150,10 +185,7 @@ const MyPantryScreen = ({navigation}) => {
           </View>
           <View style={styles.display}>
             <Text style={styles.displayText}>
-              Ingredient:
               {ingredientData.ingredient_name}
-              Category:
-              {ingredientData.category_name}
             </Text>
             <Button
               title="Add Ingredient"
@@ -161,19 +193,45 @@ const MyPantryScreen = ({navigation}) => {
               style={styles.button}
             />
             <Text />
-            {/*<Button
+            <Button
               title="Update Stored Ingredients"
               onPress={searchStoredDairyIngredients}
             />
-            <FlatList
-              data={storedIngredientData}
-              ItemSeparatorComponent={listViewItemSeparator}
-              keyExtractor={(item, index) => index.toString()}
-              renderItem={({item}) => listStoredIngredientItemView(item)}
-            />*/}
           </View>
+          <TextInput
+              style={styles.inputText}
+              placeholder="Type The Ingredient to Delete"
+              placeholderTextColor="black"
+              onChangeText={
+                // eslint-disable-next-line no-shadow
+                (inputStoredIngredientName) =>
+                    setInputStoredIngredientName(inputStoredIngredientName)
+              }
+          />
+          <Button
+              style={styles.button}
+              title="Delete an Ingredient"
+              onPress={deleteIngredient}
+          />
+          <SafeAreaView style={styles.scrollContainer}>
+            <ImageBackground
+                source={require('../images/background/light-wood.jpg')}
+                style={styles.image}>
+            <View style={{flex: 1, backgroundColor: 'white'}}>
+              <View style={{flex: 1}}>
+                <Text>Pantry: </Text>
+                <FlatList
+                  data={storedIngredientData}
+                  ItemSeparatorComponent={listViewItemSeparator}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({item}) => listStoredIngredientItemView(item)}
+                />
+              </View>
+            </View>
+            </ImageBackground>
+          </SafeAreaView>
 
-          <View style={styles.scrollContainer}>
+          {/*<View style={styles.scrollContainer}>
             <ScrollView>
               <View style={styles.scroll}>
                 <ImageBackground
@@ -624,7 +682,7 @@ const MyPantryScreen = ({navigation}) => {
                 </ImageBackground>
               </View>
             </ScrollView>
-          </View>
+          </View>*/}
         </View>
       </ImageBackground>
     </View>
