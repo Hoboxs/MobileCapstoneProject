@@ -229,8 +229,88 @@ const IntroScreen = ({navigation}) => {
                             [],
                         );
                         tx.executeSql(
-                            'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
-                            ['yogurt', 'dairy'],
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['milk', 'dairy'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['cheese', 'dairy'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['margarine', 'dairy'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['butter', 'dairy'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['beef', 'meat'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['chicken', 'meat'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['salmon', 'meat'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['banana', 'fruit'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['apple', 'fruit'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['lemon', 'fruit'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['broccoli', 'vegetable'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['carrot', 'vegetable'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['celery', 'vegetable'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['garlic', 'vegetable'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['bread', 'grain'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['wheat', 'grain'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['salt', 'spices'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['pepper', 'spices'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['onion powder', 'spices'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['rosemary', 'vegetable'],
+                        );
+                        tx.executeSql(
+                          'INSERT INTO table_stored_ingredients (stored_ingredient_name, stored_category_name) VALUES (?,?)',
+                          ['honey', 'sweeteners'],
                         );
                     }
                 },

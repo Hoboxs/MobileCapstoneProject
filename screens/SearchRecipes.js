@@ -13,14 +13,10 @@ import {
   FlatList,
   ImageBackground,
 } from 'react-native';
+import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
-class SearchRecipesScreen extends React.Component {
+const SearchRecipesScreen = ({route, navigation}) => {
 
-  constructor({navigation}) {
-    super();
-  }
-
-  render() {
      return (
        <View style={styles.backgroundContainer}>
           <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -28,7 +24,7 @@ class SearchRecipesScreen extends React.Component {
                   <View style={styles.searchContainer}>
                       <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
                           <View style={styles.searchHeader}>
-                              <Text style={styles.searchText}>Search Recipes</Text>
+                              <Text style={styles.searchText}>Search Results for {route.params.obj}</Text>
                               <View style={styles.inputView} >
                                   <TextInput
                                     style={styles.inputText}
@@ -99,7 +95,6 @@ class SearchRecipesScreen extends React.Component {
        </View>
     );
   }
-};
 
 
 const styles = StyleSheet.create({
