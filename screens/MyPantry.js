@@ -161,7 +161,7 @@ const MyPantryScreen = ({navigation}) => {
               style={styles.button}
             />
             <Text />
-            <Button
+            {/*<Button
               title="Update Stored Ingredients"
               onPress={searchStoredDairyIngredients}
             />
@@ -170,7 +170,7 @@ const MyPantryScreen = ({navigation}) => {
               ItemSeparatorComponent={listViewItemSeparator}
               keyExtractor={(item, index) => index.toString()}
               renderItem={({item}) => listStoredIngredientItemView(item)}
-            />
+            />*/}
           </View>
 
           <View style={styles.scrollContainer}>
