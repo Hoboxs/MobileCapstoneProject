@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,49 +15,70 @@ import {
   Platform,
 } from 'react-native';
 
-class LoginScreen extends React.Component {
+import { openDatabase } from 'react-native-sqlite-storage';
 
-  constructor({navigation}) {
-    super();
-    this.state = {
-      email: '',
-      emailError: '',
-      password: '',
-      passwordError: '',
+var db = openDatabase({ name: 'UserDatabase.db' });
+
+const LoginScreen = ({ navigation }) => {
+
+  let [email, setEmail] = useState('');
+  let [emailError, setEmailError] = useState('');
+  let [password, setPassword] = useState('');
+  let [passwordError, setPasswordError] = useState('');
+
+  let searchUser = () => {
+    console.log(email, password);
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM table_user where user_email = ? AND user_password = ?',
+        [email, password],
+        (tx, results) => {
+          var len = results.rows.length;
+          console.log('len', len);
+          if (len > 0) {
+            global.name = results.rows.item(0).user_name;
+            global.email = results.rows.item(0).user_email;
+            global.password = results.rows.item(0).user_password;
+            global.id = results.rows.item(0).user_id;
+            navigation.navigate('Dashboard');
+          } else {
+            alert('No user found');
+          }
+        }
+      );
+    });
+  };
+
+  let onSubmit = () => {
+    emailValidator();
+    passwordValidator();
+    if(emailValidator() && passwordValidator()){
+      searchUser();
     }
   }
 
-  onSubmit(){
-    this.emailValidator();
-    this.passwordValidator();
-    if(this.emailValidator() && this.passwordValidator()){
-      this.props.navigation.navigate('Dashboard');
-    }
-  }
-
-  emailValidator(){
-    if(this.state.email==""){
-      this.setState({emailError:"Enter a Valid Email"})
-    } else if(this.state.email.indexOf('@') == -1 ){
-      this.setState({emailError:"Enter a Valid Email"})
+  let emailValidator = () => {
+    if(email==""){
+      setEmailError("Enter a Valid Email");
+    } else if(email.indexOf('@') == -1 ){
+      setEmailError("Enter a Valid Email");
     } else{
-      this.setState({emailError:""})
+      setEmailError("");
       return true;
     }
     return false;
-  }
+  };
 
-  passwordValidator(){
-    if(this.state.password==""){
-      this.setState({passwordError:"Enter a Valid Password"})
+  let passwordValidator = () => {
+    if(password==""){
+      setPasswordError("Enter a Valid Password");
     } else{
-      this.setState({passwordError:""})
+      setPasswordError("");
       return true;
     }
     return false;
-  }
+  };
 
-  render() {
    return (
      <View style={styles.backgroundContainer}>
       <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -67,41 +88,41 @@ class LoginScreen extends React.Component {
             source={require("../images/bitstobiteslogo.png")}
           />
           <View style={styles.errorText}>
-            <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.emailError}</Text>
+            <Text style={{color: 'red', fontWeight: 'bold'}}>{emailError}</Text>
           </View>
           <View style={styles.inputView} >
             <TextInput
               style={styles.inputText}
               placeholder="Email"
-              onBlur={()=>this.emailValidator()}
+              onBlur={()=>emailValidator()}
               placeholderTextColor="lightgrey"
-              onChangeText={(text) => {this.setState({email: text})}}
+              onChangeText={(text) => {setEmail(text)}}
             />
           </View>
-          <Text style={{color: 'red', fontWeight: 'bold'}}>{this.state.passwordError}</Text>
+          <Text style={{color: 'red', fontWeight: 'bold'}}>{passwordError}</Text>
           <View style={styles.inputView} >
             <TextInput
               secureTextEntry
               style={styles.inputText}
               placeholder="Password"
-              onBlur={()=>this.passwordValidator()}
+              onBlur={()=>passwordValidator()}
               placeholderTextColor="lightgrey"
-              onChangeText={(text) => {this.setState({password: text})}}
+              onChangeText={(text) => {setPassword(text)}}
             />
           </View>
           <TouchableOpacity style={styles.loginBtn}
-            onPress = {() => this.onSubmit()}>
+            onPress = {() => onSubmit()}>
             <Text style={styles.loginText}>
               LOGIN</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.forgot} onPress={()=>{
-              this.props.navigation.navigate('ForgotPassword');
+              navigation.navigate('ForgotPassword');
               }}>Forgot Password?</Text>
           </TouchableOpacity>
           <Text style={styles.loginText}> {"Don't have an account? "}
             <Text style={styles.signupText} onPress={()=>{
-              this.props.navigation.navigate('Register');
+              navigation.navigate('Register');
               }}>
             Sign Up</Text>
           </Text>
@@ -109,7 +130,6 @@ class LoginScreen extends React.Component {
         </ImageBackground>
       </View>
   );
-}
 };
 
 

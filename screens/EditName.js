@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,15 +11,60 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Alert,
 } from 'react-native';
 
-class EditNameScreen extends React.Component {
+import { openDatabase } from 'react-native-sqlite-storage';
 
-    constructor({navigation}) {
-      super();
-    }
+var db = openDatabase({ name: 'UserDatabase.db' });
 
-  render() {
+const EditNameScreen = ({ navigation }) => {
+
+    let [fullName, setFullName] = useState(global.name);
+    let [fullNameError, setFullNameError] = useState('');
+
+    let updateUser = () => {
+      db.transaction((tx) => {
+        tx.executeSql(
+          'UPDATE table_user set user_name=? where user_id=?',
+          [fullName, global.id],
+          (tx, results) => {
+            global.name = fullName;
+            if (results.rowsAffected > 0) {
+              Alert.alert(
+                'Success',
+                'Name updated successfully',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => navigation.navigate('Profile'),
+                  },
+                ],
+                { cancelable: false }
+              );
+            } else alert('Updation Failed');
+          }
+        );
+      });
+    };
+
+    let onSubmit = () => {
+      fullNameValidator();
+      if(fullNameValidator()){
+        updateUser();
+      }
+    };
+
+    let fullNameValidator = () => {
+      if(fullName==""){
+        setFullNameError("Enter a Valid Full Name");
+      } else{
+        setFullNameError("");
+        return true;
+      }
+      return false;
+    };
+
     return (
       <View style={styles.backgroundContainer}>
         <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -33,16 +78,26 @@ class EditNameScreen extends React.Component {
              </View>
              <View style={styles.profileContainer}>
               <View style={styles.scroll}>
+                  <View>
+                    <Text style={{color: 'red', fontWeight: 'bold'}}>{fullNameError}</Text>
+                  </View>
+                  <Text>Full Name:</Text>
+
                  <View style={styles.inputView}>
-                   <Text>{"Full Name:                               "}
-                   <Text>John Doe</Text>
-                   </Text>
+
+                   <TextInput
+                     style={styles.inputText}
+                     placeholder="Full Name"
+                     onBlur={()=>fullNameValidator()}
+                     placeholderTextColor="lightgrey"
+                     onChangeText={text => setFullName(text)}
+                     value={fullName}
+                   />
+
                  </View>
                  <TouchableOpacity
                    style={styles.editBtn}
-                   onPress={() => {
-                     this.props.navigation.navigate('Profile');
-                   }}>
+                   onPress={() => onSubmit() }>
                    <Text style={styles.logoutText}>SAVE</Text>
                  </TouchableOpacity>
             </View>
@@ -51,7 +106,6 @@ class EditNameScreen extends React.Component {
        </ImageBackground>
     </View>
     );
-  }
 };
 
 const styles = StyleSheet.create({

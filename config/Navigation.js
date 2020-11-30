@@ -16,6 +16,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+import AllUsersScreen from '../screens/AllUsers.js';
+import IntroScreen from '../screens/Intro.js';
 import LoginScreen from '../screens/Login.js';
 import DashboardScreen from '../screens/Dashboard.js';
 import ProfileScreen from '../screens/Profile.js';
@@ -37,6 +39,19 @@ const AppStack = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+         <Stack.Screen
+           name="Intro"
+           component={IntroScreen}
+           options={{
+               title: '',
+               headerStyle: {
+                 elevation: 0,
+                 shadowOpacity: 0
+               },
+               headerTransparent: true,
+             }}
+
+         />
          <Stack.Screen
            name="Login"
            component={LoginScreen}
@@ -196,6 +211,7 @@ const AppTab = ({navigation}) => {
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="AllUsers" component={AllUsersScreen} />
     </Tab.Navigator>
   );
 };
