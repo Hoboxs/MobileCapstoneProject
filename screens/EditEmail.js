@@ -14,7 +14,6 @@ import {
   Alert,
 } from 'react-native';
 
-
 import { openDatabase } from 'react-native-sqlite-storage';
 
 var db = openDatabase({ name: 'UserDatabase.db' });
@@ -69,12 +68,9 @@ const EditEmailScreen = ({ navigation }) => {
     return false;
   };
 
-
     return (
       <View style={styles.backgroundContainer}>
-        <ImageBackground
-          source={require('../images/background/light-wood.jpg')}
-          style={styles.image}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
           <View style={styles.container}>
              <View style={styles.searchContainer}>
                  <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
@@ -104,31 +100,13 @@ const EditEmailScreen = ({ navigation }) => {
                    onPress={() => onSubmit()}>
                    <Text style={styles.logoutText}>SAVE</Text>
                  </TouchableOpacity>
-
             </View>
-            <View style={styles.profileContainer}>
-              <View style={styles.scroll}>
-                <View style={styles.inputView}>
-                  <Text>
-                    {'Email:                  '}
-                    <Text>{global.name}</Text>
-                  </Text>
-                </View>
-                <TouchableOpacity
-                  style={styles.editBtn}
-                  onPress={() => {
-                    this.props.navigation.navigate('Profile');
-                  }}>
-                  <Text style={styles.logoutText}>SAVE</Text>
-                </TouchableOpacity>
-              </View>
             </View>
           </View>
-        </ImageBackground>
-      </View>
+       </ImageBackground>
+    </View>
     );
 };
-
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -141,46 +119,46 @@ const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    resizeMode: "cover",
+    justifyContent: "center"
   },
   searchContainer: {
-    width: '100%',
+    width:"100%",
     flex: 1,
   },
   searchHeader: {
-    width: '100%',
-    justifyContent: 'center',
+    width:"100%",
+    justifyContent:"center",
     alignItems: 'center',
     flex: 1,
   },
   searchText: {
     textAlign: 'center',
-    marginBottom: 20,
+    marginBottom:20,
     fontSize: 30,
     fontWeight: 'bold',
     color: 'white',
   },
   profileContainer: {
     flex: 6,
-    width: '100%',
-    justifyContent: 'center',
+    width:"100%",
+    justifyContent:"center",
     alignItems: 'center',
   },
   scroll: {
-    width: '100%',
-    height: 200,
-    marginBottom: 20,
-    justifyContent: 'center',
+    width:"100%",
+    height:200,
+    marginBottom:20,
+    justifyContent:"center",
     alignItems: 'center',
-    padding: 20,
+    padding:20
   },
   inputContainer: {
-    width: '100%',
-    height: 200,
-    marginBottom: 20,
-    justifyContent: 'center',
-    padding: 20,
+    width:"100%",
+    height:200,
+    marginBottom:20,
+    justifyContent:"center",
+    padding:20
   },
   inputView: {
     width: '80%',
