@@ -26,7 +26,7 @@ class StartRecipeScreen extends React.Component {
         <View style={styles.backgroundContainer}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/chicken.jpg")} style={styles.image}>
+                    <ImageBackground source={require("../images/dashboard/food8.jpg")} style={styles.image}>
                     </ImageBackground>
                 </View>
                 <View style={styles.RectangleShapeView}>

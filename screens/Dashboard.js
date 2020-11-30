@@ -52,7 +52,7 @@ const DashboardScreen = ({navigation}) => {
                             <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                                source={require("../images/dashboard/chicken.jpg")}
+                                source={require("../images/dashboard/food8.jpg")}
                               />
                             </TouchableOpacity>
                               <Image
