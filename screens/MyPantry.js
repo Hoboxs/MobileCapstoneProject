@@ -71,12 +71,7 @@ const MyPantryScreen = ({navigation}) => {
             style={styles.icon}
             source={require('../images/pantry/dairy-icon.jpg')}
           />
-          <Text style={styles.searchText}>
-            {item.stored_ingredient_name}
-          </Text>
-          <Text style={styles.searchText}>
-            Category: {item.stored_category_name}
-          </Text>
+          <Text style={styles.flatListItem}>{item.stored_ingredient_name}</Text>
         </ImageBackground>
       </View>
     );
@@ -128,25 +123,25 @@ const MyPantryScreen = ({navigation}) => {
   let deleteIngredient = () => {
     db.transaction((tx) => {
       tx.executeSql(
-          'DELETE FROM table_stored_ingredients WHERE stored_ingredient_name = ?;',
-          [inputStoredIngredientName],
-          (tx, results) => {
-            console.log('Results', results.rowsAffected);
-            if (results.rowsAffected > 0) {
-              Alert.alert(
-                  'Success',
-                  'You have deleted an ingredient to your pantry',
-                  [
-                    {
-                      text: 'Ok',
-                    },
-                  ],
-                  {cancelable: false},
-              );
-            } else {
-              alert('Attempt to delete ingredient Failed');
-            }
-          },
+        'DELETE FROM table_stored_ingredients WHERE stored_ingredient_name = ?;',
+        [inputStoredIngredientName],
+        (tx, results) => {
+          console.log('Results', results.rowsAffected);
+          if (results.rowsAffected > 0) {
+            Alert.alert(
+              'Success',
+              'You have deleted an ingredient to your pantry',
+              [
+                {
+                  text: 'Ok',
+                },
+              ],
+              {cancelable: false},
+            );
+          } else {
+            alert('Attempt to delete ingredient Failed');
+          }
+        },
       );
     });
   };
@@ -183,10 +178,12 @@ const MyPantryScreen = ({navigation}) => {
               </View>
             </ImageBackground>
           </View>
-          <View style={styles.display}>
+          <View style={styles.searchDisplay}>
             <Text style={styles.displayText}>
               {ingredientData.ingredient_name}
             </Text>
+          </View>
+          <View style={styles.display}>
             <Button
               title="Add Ingredient"
               onPress={addIngredient}
@@ -196,39 +193,45 @@ const MyPantryScreen = ({navigation}) => {
             <Button
               title="Update Stored Ingredients"
               onPress={searchStoredDairyIngredients}
+              style={styles.button}
+              color="orange"
             />
           </View>
-          <TextInput
+          <View style={{marginTop: 10}}>
+            <TextInput
               style={styles.inputText}
-              placeholder="Type The Ingredient to Delete"
+              placeholder="Type Ingredient to Remove from Pantry"
               placeholderTextColor="black"
+              fontSize={18}
               onChangeText={
                 // eslint-disable-next-line no-shadow
                 (inputStoredIngredientName) =>
-                    setInputStoredIngredientName(inputStoredIngredientName)
+                  setInputStoredIngredientName(inputStoredIngredientName)
               }
-          />
-          <Button
-              style={styles.button}
-              title="Delete an Ingredient"
+            />
+            <Button
+              style={{flex: 0.5}}
+              title="Remove an Ingredient"
               onPress={deleteIngredient}
-          />
+              color="red"
+            />
+          </View>
           <SafeAreaView style={styles.scrollContainer}>
-            <ImageBackground
+            <View style={{flex: 1}}>
+              <ImageBackground
                 source={require('../images/background/light-wood.jpg')}
                 style={styles.image}>
-            <View style={{flex: 1, backgroundColor: 'white'}}>
-              <View style={{flex: 1}}>
-                <Text>Pantry: </Text>
-                <FlatList
-                  data={storedIngredientData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({item}) => listStoredIngredientItemView(item)}
-                />
-              </View>
+                <View style={{flex: 1, marginTop: 20}}>
+                  <Text style={styles.displayText}>Pantry: </Text>
+                  <FlatList
+                    data={storedIngredientData}
+                    ItemSeparatorComponent={listViewItemSeparator}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={({item}) => listStoredIngredientItemView(item)}
+                  />
+                </View>
+              </ImageBackground>
             </View>
-            </ImageBackground>
           </SafeAreaView>
 
           {/*<View style={styles.scrollContainer}>
@@ -707,6 +710,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 100,
+    justifyContent: 'flex-start',
   },
   searchContainer: {
     width: '100%',
@@ -739,23 +743,33 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  flatListItem: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+    justifyContent: 'flex-end',
+    textAlign: 'right',
+  },
   scrollContainer: {
     flex: 3,
     width: '80%',
   },
   scroll: {
-    width: '100%',
+    /*width: '100%',
     height: 100,
+    justifyContent: 'center',
+    textAlign: 'center',
+    padding: 20,*/
+    flexDirection: 'row',
     marginBottom: 15,
     marginTop: 5,
-    justifyContent: 'center',
-    textAlign: 'center',
-    padding: 20,
   },
   display: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  searchDisplay: {
     marginTop: 20,
-    justifyContent: 'center',
-    textAlign: 'center',
   },
   inputView: {
     width: '80%',
@@ -766,12 +780,8 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   inputText: {
-    height: 50,
+    height: 60,
     color: 'black',
-  },
-  button: {
-    width: 50,
-    height: 70,
   },
   displayText: {
     textAlign: 'center',
