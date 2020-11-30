@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,15 +11,103 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Alert,
 } from 'react-native';
 
-class EditPasswordScreen extends React.Component {
+import { openDatabase } from 'react-native-sqlite-storage';
 
-    constructor({navigation}) {
-      super();
+var db = openDatabase({ name: 'UserDatabase.db' });
+
+const EditPasswordScreen = ({ navigation }) => {
+
+  let [oldPassword, setOldPassword] = useState(global.password);
+  let [oldPasswordError, setOldPasswordError] = useState('');
+  let [newPassword, setNewPassword] = useState('');
+  let [newPasswordError, setNewPasswordError] = useState('');
+  let [confirmPassword, setConfirmPassword] = useState('');
+  let [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  let updateUser = () => {
+    db.transaction((tx) => {
+
+      tx.executeSql(
+        'SELECT * FROM table_user where user_email = ? AND user_password = ?',
+        [global.email, oldPassword],
+        (tx, results) => {
+          console.log(results.rows.length);
+          console.log("password", oldPassword)
+          if (results.rows.length > 0) {
+            tx.executeSql(
+              'UPDATE table_user set user_password=? where user_id=?',
+              [newPassword, global.id],
+              (tx, results) => {
+
+                global.password = newPassword;
+                if (results.rowsAffected > 0) {
+                  Alert.alert(
+                    'Success',
+                    'Password updated successfully',
+                    [
+                      {
+                        text: 'Ok',
+                        onPress: () => navigation.navigate('Profile'),
+                      },
+                    ],
+                    { cancelable: false }
+                  );
+                } else alert('Updation Failed');
+              }
+            );
+          } else {
+            alert('Incorrect password');
+          }
+        }
+      );
+
+    });
+  };
+
+  let onSubmit = () => {
+    oldPasswordValidator();
+    newPasswordValidator();
+    confirmPasswordValidator();
+    if(oldPasswordValidator() && newPasswordValidator() && confirmPasswordValidator()){
+      updateUser();
     }
+  };
 
-  render() {
+  let oldPasswordValidator = () => {
+    if(oldPassword==""){
+      setOldPasswordError("Enter a Valid Password");
+    } else{
+      setOldPasswordError("");
+      return true;
+    }
+    return false;
+  };
+
+  let newPasswordValidator = () => {
+    if(newPassword==""){
+      setNewPasswordError("Enter a Valid Password");
+    } else{
+      setNewPasswordError("");
+      return true;
+    }
+    return false;
+  };
+
+  let confirmPasswordValidator = () => {
+    if(confirmPassword==""){
+      setConfirmPasswordError("Enter a Valid Password");
+    } else if(newPassword != confirmPassword){
+      setConfirmPasswordError("Passwords Must Match");
+    }else{
+      setConfirmPasswordError("");
+      return true;
+    }
+    return false;
+  };
+
     return (
       <View style={styles.backgroundContainer}>
         <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -33,26 +121,54 @@ class EditPasswordScreen extends React.Component {
              </View>
              <View style={styles.profileContainer}>
               <View style={styles.scroll}>
+                <View>
+                  <Text style={{color: 'red', fontWeight: 'bold'}}>{oldPasswordError}</Text>
+                </View>
+                  <Text>Current Password: </Text>
                  <View style={styles.inputView}>
-                   <Text>{"Current Password:                 "}
-                   <Text>**********</Text>
-                   </Text>
+                   <TextInput
+                     style={styles.inputText}
+                     secureTextEntry
+                     placeholder="Old Password"
+                     onBlur={()=>oldPasswordValidator()}
+                     placeholderTextColor="lightgrey"
+                     onChangeText={text => setOldPassword(text)}
+                     value={oldPassword}
+                   />
                  </View>
-                 <View style={styles.inputView}>
-                   <Text>{"New Password:                      "}
-                   <Text>**********</Text>
-                   </Text>
+                 <View>
+                   <Text style={{color: 'red', fontWeight: 'bold'}}>{newPasswordError}</Text>
                  </View>
+                 <Text>New Password:</Text>
                  <View style={styles.inputView}>
-                   <Text>{"Confirm New Password:       "}
-                   <Text>**********</Text>
-                   </Text>
+                   <TextInput
+                     style={styles.inputText}
+                     secureTextEntry
+                     placeholder="New Password"
+                     onBlur={()=>newPasswordValidator()}
+                     placeholderTextColor="lightgrey"
+                     onChangeText={text => setNewPassword(text)}
+                     value={newPassword}
+                   />
+                 </View>
+                 <View>
+                   <Text style={{color: 'red', fontWeight: 'bold'}}>{confirmPasswordError}</Text>
+                 </View>
+                 <Text>Confirm New Password:</Text>
+                 <View style={styles.inputView}>
+                   <TextInput
+                     style={styles.inputText}
+                     secureTextEntry
+                     placeholder="Confirm Password"
+                     onBlur={()=>confirmPasswordValidator()}
+                     placeholderTextColor="lightgrey"
+                     onChangeText={text => setConfirmPassword(text)}
+                     value={confirmPassword}
+                   />
                  </View>
                  <TouchableOpacity
                    style={styles.editBtn}
-                   onPress={() => {
-                     this.props.navigation.navigate('Profile');
-                   }}>
+                   onPress={() => onSubmit()}>
                    <Text style={styles.logoutText}>SAVE</Text>
                  </TouchableOpacity>
             </View>
@@ -61,7 +177,6 @@ class EditPasswordScreen extends React.Component {
        </ImageBackground>
     </View>
     );
-  }
 };
 
 const styles = StyleSheet.create({

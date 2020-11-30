@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,28 +11,100 @@ import {
   TouchableOpacity,
   Image,
   ImageBackground,
+  Alert,
 } from 'react-native';
 
-class EditEmailScreen extends React.Component {
-  constructor({navigation}) {
-    super();
-  }
 
-  render() {
+import { openDatabase } from 'react-native-sqlite-storage';
+
+var db = openDatabase({ name: 'UserDatabase.db' });
+
+const EditEmailScreen = ({ navigation }) => {
+
+  let [email, setEmail] = useState(global.email);
+  let [emailError, setEmailError] = useState('');
+
+  let updateUser = () => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'UPDATE table_user set user_email=? where user_id=?',
+        [email, global.id],
+        (tx, results) => {
+
+          global.email = email;
+          if (results.rowsAffected > 0) {
+            Alert.alert(
+              'Success',
+              'Email updated successfully',
+              [
+                {
+                  text: 'Ok',
+                  onPress: () => navigation.navigate('Profile'),
+                },
+              ],
+              { cancelable: false }
+            );
+          } else alert('Updation Failed');
+        }
+      );
+    });
+  };
+
+  let onSubmit = () => {
+    emailValidator();
+    if(emailValidator()){
+      updateUser();
+    }
+  };
+
+  let emailValidator = () => {
+    if(email==""){
+      setEmailError("Enter a Valid Email");
+    } else if(email.indexOf('@') == -1 ){
+      setEmailError("Enter a Valid Email");
+    } else{
+      setEmailError("");
+      return true;
+    }
+    return false;
+  };
+
+
     return (
       <View style={styles.backgroundContainer}>
         <ImageBackground
           source={require('../images/background/light-wood.jpg')}
           style={styles.image}>
           <View style={styles.container}>
-            <View style={styles.searchContainer}>
-              <ImageBackground
-                source={require('../images/background/dark-wood.jpg')}
-                style={styles.image}>
-                <View style={styles.searchHeader}>
-                  <Text style={styles.searchText}>Edit Email</Text>
-                </View>
-              </ImageBackground>
+             <View style={styles.searchContainer}>
+                 <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                     <View style={styles.searchHeader}>
+                         <Text style={styles.searchText}>Edit Email</Text>
+                     </View>
+                 </ImageBackground>
+             </View>
+             <View style={styles.profileContainer}>
+              <View style={styles.scroll}>
+                  <View>
+                    <Text style={{color: 'red', fontWeight: 'bold'}}>{emailError}</Text>
+                  </View>
+                  <Text>Email:</Text>
+                  <View style={styles.inputView}>
+                    <TextInput
+                      style={styles.inputText}
+                      placeholder="Email"
+                      onBlur={()=>emailValidator()}
+                      placeholderTextColor="lightgrey"
+                      onChangeText={text => setEmail(text)}
+                      value={email}
+                    />
+                  </View>
+                 <TouchableOpacity
+                   style={styles.editBtn}
+                   onPress={() => onSubmit()}>
+                   <Text style={styles.logoutText}>SAVE</Text>
+                 </TouchableOpacity>
+
             </View>
             <View style={styles.profileContainer}>
               <View style={styles.scroll}>
@@ -55,8 +127,8 @@ class EditEmailScreen extends React.Component {
         </ImageBackground>
       </View>
     );
-  }
-}
+};
+
 
 const styles = StyleSheet.create({
   backgroundContainer: {
