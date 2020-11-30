@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -13,14 +13,14 @@ import {
   FlatList,
   ImageBackground,
 } from 'react-native';
+import {openDatabase} from 'react-native-sqlite-storage';
 
-class DashboardScreen extends React.Component {
+let db = openDatabase({name: 'UserDatabase.db'});
 
-  constructor({navigation}) {
-    super();
-  }
+const DashboardScreen = ({navigation}) => {
 
-  render() {
+  let [obj, setObj] = useState('');
+
      return (
        <View style={styles.backgroundContainer}>
           <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -35,8 +35,9 @@ class DashboardScreen extends React.Component {
                                     placeholder="Search"
                                     placeholderTextColor="lightgrey"
                                     returnKeyType = "search"
+                                    onChangeText={(text) => {setObj(text)}}
                                     onSubmitEditing={() => {
-                                      this.props.navigation.navigate('SearchParameters');
+                                      navigation.navigate('SearchRecipes',{obj});
                                       }}
                                   />
                               </View>
@@ -48,7 +49,7 @@ class DashboardScreen extends React.Component {
                       <View style={styles.scroll}>
                           <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
                           <ScrollView horizontal>
-                            <TouchableOpacity onPress={()=>{this.props.navigation.navigate('StartRecipe');}}>
+                            <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
                                 source={require("../images/dashboard/food8.jpg")}
@@ -104,9 +105,7 @@ class DashboardScreen extends React.Component {
         </ImageBackground>
        </View>
     );
-  }
-};
-
+  };
 
 const styles = StyleSheet.create({
   backgroundContainer: {
