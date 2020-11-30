@@ -17,7 +17,6 @@ import {openDatabase} from 'react-native-sqlite-storage';
 
 let db = openDatabase({name: 'UserDatabase.db'});
 
-
 const DashboardScreen = ({navigation}) => {
 
   let [obj, setObj] = useState('');
@@ -53,7 +52,7 @@ const DashboardScreen = ({navigation}) => {
                             <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                                source={require("../images/dashboard/food8.jpg")}
+                                source={require("../images/dashboard/chicken.jpg")}
                               />
                             </TouchableOpacity>
                               <Image

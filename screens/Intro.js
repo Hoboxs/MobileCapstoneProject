@@ -67,7 +67,7 @@ const IntroScreen = ({navigation}) => {
                 '1 whole chicken, Salt, Pepper, 1 tablespoon onion powder, 1/2 cup margarine, 1 stalk celery',
                 'Intermediate',
                 '1 hour 40 min',
-                'food1.jpg',
+                'chicken.jpg',
               ],
             );
             tx.executeSql(
@@ -78,7 +78,7 @@ const IntroScreen = ({navigation}) => {
                 '2 New York Steaks, Salt, 3 tablespoons butter, 3 cloves garlic, 2 springs fresh rosemary',
                 'Easy',
                 '30 min',
-                'food9.jpg',
+                'steak.jpg',
               ],
             );
             tx.executeSql(
@@ -89,7 +89,7 @@ const IntroScreen = ({navigation}) => {
                 '13 cups fresh broccoli florets, 3 tablespoons butter, 5 garlic cloves, salt',
                 'Easy',
                 '5 min',
-                'food10.jpg',
+                'broccoli.jpg',
               ],
             );
             tx.executeSql(
