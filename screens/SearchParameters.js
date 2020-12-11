@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,13 +15,10 @@ import {
 } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-class SearchParametersScreen extends React.Component {
+const SearchParametersScreen = ({ route, navigation }) => {
 
-  constructor({navigation}) {
-    super();
-  }
+  let [recipeParam,setRecipeParam] = useState(route.params.obj);
 
-  render() {
     return (
       <View style={styles.backgroundContainer}>
         <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
@@ -32,9 +29,12 @@ class SearchParametersScreen extends React.Component {
                   <Text style={styles.searchText}>Search Recipes</Text>
                   <View style={styles.inputView} >
                     <TextInput
+                      defaultValue={recipeParam}
                       style={styles.inputText}
-                      placeholder="Search"
-                      placeholderTextColor="lightgrey"
+                      onChangeText={(text) => {setRecipeParam(text)}}
+                      onSubmitEditing={() => {
+                        navigation.navigate('SearchRecipes',{recipeParam});
+                        }}
                     />
                   </View>
                 </View>
@@ -206,8 +206,8 @@ class SearchParametersScreen extends React.Component {
         </ImageBackground>
       </View>
     );
-  }
-};
+  };
+
 
 
 const styles = StyleSheet.create({

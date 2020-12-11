@@ -37,7 +37,7 @@ const DashboardScreen = ({navigation}) => {
                                     returnKeyType = "search"
                                     onChangeText={(text) => {setObj(text)}}
                                     onSubmitEditing={() => {
-                                      navigation.navigate('SearchRecipes',{obj});
+                                      navigation.navigate('SearchParameters',{obj});
                                       }}
                                   />
                               </View>
