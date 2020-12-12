@@ -14,6 +14,7 @@ import {
   Alert,
   Platform,
 } from 'react-native';
+import { color } from 'react-native-reanimated';
 
 import { openDatabase } from 'react-native-sqlite-storage';
 
@@ -113,14 +114,14 @@ const LoginScreen = ({ navigation }) => {
           <TouchableOpacity style={styles.loginBtn}
             onPress = {() => onSubmit()}>
             <Text style={styles.loginText}>
-              LOGIN</Text>
+              Login</Text>
           </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.forgot} onPress={()=>{
               navigation.navigate('ForgotPassword');
               }}>Forgot Password?</Text>
           </TouchableOpacity>
-          <Text style={styles.loginText}> {"Don't have an account? "}
+          <Text style={styles.signupText1}> {"Don't have an account? "}
             <Text style={styles.signupText} onPress={()=>{
               navigation.navigate('Register');
               }}>
@@ -163,12 +164,14 @@ const styles = StyleSheet.create({
   },
   inputText:{
     height:50,
-    color:"black"
+    color:"black",
+    textAlign: 'center',
+    fontSize:17
   },
   forgot:{
     color:"black",
-    fontSize:11,
-    marginBottom:20
+    fontSize:15,
+    marginBottom:30
   },
   loginBtn:{
     width:"80%",
@@ -179,10 +182,15 @@ const styles = StyleSheet.create({
     marginBottom:10
   },
   loginText:{
-    color:"black"
+    fontSize: 17,
+    color: "white",
   },
   signupText:{
     color:"red"
+  },
+  signupText1:{
+    color: "black",
+    fontSize:17
   },
   errorText:{
     alignItems:"center",

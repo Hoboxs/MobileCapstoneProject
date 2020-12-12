@@ -61,7 +61,7 @@ const SearchParametersScreen = ({ route, navigation }) => {
                   </TouchableOpacity>
                   <TouchableOpacity>
                     <View style={styles.myButton}>
-                      <Text>Plaeo</Text>
+                      <Text>Paleo</Text>
                     </View>
                   </TouchableOpacity>
                 </View>
