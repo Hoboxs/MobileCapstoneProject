@@ -25,6 +25,13 @@ const SearchRecipesScreen = ({ route, navigation }) => {
   let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
   let [recipeData, setRecipeData] = useState({});
 
+  const Item = ({ item, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+      <Image source={{uri:item.recipe_imageUrl}} style={{height:50, width:50, padding:5}} />
+      <Text style={styles.title}>{item.title}</Text>
+    </TouchableOpacity>
+  );
+
 
   useEffect(() => {
     db.transaction((tx) => {
@@ -377,6 +384,12 @@ const styles = StyleSheet.create({
   headerText: {
     height: 20,
     fontWeight: 'bold',
+  },
+  item:{
+    width: 175, 
+    height: 175,
+    marginBottom: 20, 
+    marginRight: 20
   }
 });
 

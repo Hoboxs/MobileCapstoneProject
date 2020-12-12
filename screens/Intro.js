@@ -67,7 +67,7 @@ const IntroScreen = ({navigation}) => {
                 '1 whole chicken, Salt, Pepper, 1 tablespoon onion powder, 1/2 cup margarine, 1 stalk celery',
                 'Intermediate',
                 '1 hour 40 min',
-                'chicken.jpg',
+                'https://www.spendwithpennies.com/wp-content/uploads/2018/11/SpendWithPennies-Juicy-Roast-Chicken-25.jpg',
               ],
             );
             tx.executeSql(
@@ -78,7 +78,7 @@ const IntroScreen = ({navigation}) => {
                 '2 New York Steaks, Salt, 3 tablespoons butter, 3 cloves garlic, 2 springs fresh rosemary',
                 'Easy',
                 '30 min',
-                'steak.jpg',
+                'https://cookthestory.com/wp-content/uploads/2018/09/Steak-from-Frozen-1392x780-1716.jpg',
               ],
             );
             tx.executeSql(
@@ -89,7 +89,7 @@ const IntroScreen = ({navigation}) => {
                 '13 cups fresh broccoli florets, 3 tablespoons butter, 5 garlic cloves, salt',
                 'Easy',
                 '5 min',
-                'broccoli.jpg',
+                'https://buildyourbite.com/wp-content/uploads/2018/06/broccoli-with-garlic-sauce-4-720x540.jpg',
               ],
             );
             tx.executeSql(
@@ -100,7 +100,7 @@ const IntroScreen = ({navigation}) => {
                 '4 salmon filets, 1 tablespoon butter, 3 garlic cloves, 3 tablespoons honey, 2 tablespoons lemon juice',
                 'Easy',
                 '20 min',
-                'food11.jpg',
+                'https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/18924-lemon-pepper-salmon-760x580.jpg?ext=.jpg',
               ],
             );
           }
