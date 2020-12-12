@@ -29,7 +29,6 @@ const MyPantryScreen = ({navigation}) => {
   let [ingredientData, setIngredientData] = useState({});
   let [storedIngredientData, setStoredIngredientData] = useState({});
   let [inputStoredIngredientName, setInputStoredIngredientName] = useState('');
-  let [image, setImage] = useState('');
 
   let searchIngredient = () => {
     console.log(inputIngredientId);
@@ -64,19 +63,54 @@ const MyPantryScreen = ({navigation}) => {
   };
 
   let listStoredIngredientItemView = (item) => {
-    console.log(item.stored_category_name);
+    let image = imageForItemView(item);
     return (
       <View key={item.stored_ingredient_id} style={styles.scroll}>
         <ImageBackground
           source={require('../images/background/dark-wood.jpg')}
           style={styles.backgroundImage}>
-          <Image style={styles.icon} source={require('../images/pantry/dairy-icon.jpg')} />
+          <Image style={styles.icon} source={image} />
           <Text style={styles.flatListItem}>
             {item.stored_ingredient_name}
           </Text>
         </ImageBackground>
       </View>
     );
+  };
+
+  let imageForItemView = (item) => {
+    let image = '';
+    if (item.stored_category_name === 'dairy'){
+      image = require('../images/pantry/dairy-icon.jpg');
+    }
+    else if (item.stored_category_name === 'spices'){
+      image = require('../images/pantry/spices-icon.jpg');
+    }
+    else if (item.stored_category_name === 'meat'){
+      image = require('../images/pantry/meat-icon.jpg');
+    }
+    else if (item.stored_category_name === 'fruit'){
+      image = require('../images/pantry/fruit-icon.jpg');
+    }
+    else if (item.stored_category_name === 'vegetable'){
+      image = require('../images/pantry/broccoli-icon.jpg');
+    }
+    else if (item.stored_category_name === 'seafood'){
+      image = require('../images/pantry/seafood-icon.jpg');
+    }
+    else if (item.stored_category_name === 'sweeteners'){
+      image = require('../images/pantry/sweetners-icon.jpg');
+    }
+    else if (item.stored_category_name === 'grain'){
+      image = require('../images/pantry/grains-icon.jpg');
+    }
+    else if (item.stored_category_name === 'nut'){
+      image = require('../images/pantry/nuts-icon.jpg');
+    }
+    else {
+      image = require('../images/pantry/fruit-icon.jpg');
+    }
+    return image;
   };
 
   let searchStoredDairyIngredients = () => {
@@ -171,7 +205,7 @@ const MyPantryScreen = ({navigation}) => {
                         setInputIngredientId(inputIngredientId)
                     }
                   />
-                  <TouchableHighlight color="white" onPress={searchIngredient}>
+                  <TouchableHighlight style={{marginTop: 8}} onPress={searchIngredient}>
                     <View>
                       <Icon name="search" size={25} color="black" style={{justifyContent: 'center'}}/>
                     </View>
@@ -184,22 +218,23 @@ const MyPantryScreen = ({navigation}) => {
             <Text style={styles.displayText}>
               {ingredientData.ingredient_name}
             </Text>
-            <TouchableHighlight color="white" onPress={addIngredient}>
+            <TouchableHighlight style={{marginLeft: 10,}} onPress={addIngredient}>
               <View>
                 <Icon name="plus" size={30} color="blue"/>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight color="white" onPress={searchStoredDairyIngredients}>
+            <TouchableHighlight style={{marginLeft: 10}} onPress={searchStoredDairyIngredients}>
               <View>
                 <Icon name="rotate-ccw" size={30} color="black"/>
               </View>
             </TouchableHighlight>
           </View>
 
-          <View style={{marginTop: 10, flexDirection: 'row'}}>
+          <View style={{marginTop: 10, flexDirection: 'row', marginBottom: 20,}}>
             <TextInput
-              placeholder="Type Ingredient to Remove from Pantry"
-              placeholderTextColor="black"
+              style={{backgroundColor: 'white', width: 240}}
+              placeholder="Type Ingredient to Remove"
+              placeholderTextColor="grey"
               fontSize={18}
               onChangeText={
                 // eslint-disable-next-line no-shadow
@@ -207,7 +242,7 @@ const MyPantryScreen = ({navigation}) => {
                   setInputStoredIngredientName(inputStoredIngredientName)
               }
             />
-            <TouchableHighlight bacgroundColor="red" onPress={deleteIngredient}>
+            <TouchableHighlight style={{marginTop: 7}} onPress={deleteIngredient}>
               <View>
                 <Icon name="trash" size={25} color="red" />
               </View>
@@ -218,8 +253,12 @@ const MyPantryScreen = ({navigation}) => {
               <ImageBackground
                 source={require('../images/background/light-wood.jpg')}
                 style={styles.image}>
+                <ImageBackground
+                  source={require('../images/background/dark-wood.jpg')}
+                  style={styles.imageTitle}>
+                  <Text style={styles.titleText}>Pantry: </Text>
+                </ImageBackground>
                 <View style={{flex: 1, marginTop: 20}}>
-                  <Text style={styles.displayText}>Pantry: </Text>
                   <FlatList
                     data={storedIngredientData}
                     ItemSeparatorComponent={listViewItemSeparator}
@@ -248,6 +287,10 @@ const styles = StyleSheet.create({
   image: {
     flex: 1,
     resizeMode: 'cover',
+    justifyContent: 'center',
+  },
+  imageTitle: {
+    height: 50,
     justifyContent: 'center',
   },
   icon: {
@@ -284,6 +327,12 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 20,
     fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  titleText: {
+    textAlign: 'center',
+    fontSize: 20,
     fontWeight: 'bold',
     color: 'white',
   },
