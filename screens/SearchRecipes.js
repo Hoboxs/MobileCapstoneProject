@@ -23,7 +23,7 @@ let db = openDatabase({ name: 'UserDatabase.db' });
 const SearchRecipesScreen = ({ route, navigation }) => {
 
   let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
-  let [recipeData, setRecipeData] = useState([]);
+  let [recipeData, setRecipeData] = useState({});
 
 
   useEffect(() => {
@@ -36,10 +36,10 @@ const SearchRecipesScreen = ({ route, navigation }) => {
           console.log('len', len);
           if (len > 0) {
             let temp = [];
-          for (let i = 0; i < results.rows.length; ++i) {
-            temp.push(results.rows.item(i));
-          }
-          setRecipeData(temp);
+            for (let i = 0; i < results.rows.length; ++i) {
+              temp.push(results.rows.item(i));
+            }
+            setRecipeData(temp);
           } else {
             alert('No recipes found');
           }
@@ -48,62 +48,278 @@ const SearchRecipesScreen = ({ route, navigation }) => {
     });
   }, []);
 
-  let listRecipeItemView = (item) => {
+  if (recipeParam === "chicken") {
+
     return (
-      <View
-        key={item.recipe_id}
-        style={{ backgroundColor: 'white', padding: 20 }}>
-        <Text>Id: {item.recipe_id}</Text>
-        <Text>Title: {item.recipe_title}</Text>
-        <Text>Level: {item.recipe_level}</Text>
-        <Text>Cook Time: {item.recipe_cookTime}</Text>
-        <Text>Ingredients: {item.recipe_ingredients}</Text>
-        <Text>Directions: {item.recipe_description}</Text>
-        <Text>Image URL: {item.recipe_imageUrl}</Text>
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+                  <ScrollView horizontal>
+                    <TouchableOpacity onPress={() => { navigation.navigate('StartRecipe',{recipeData, recipeParam}); }}>
+                      <Image
+                        style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                        source={require("../images/dashboard/food8.jpg")}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search2.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search3.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>FAN FAVOURITES</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search4.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search5.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search6.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>CHEF'S SELECTION</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search7.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search8.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/search9.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+              </ ScrollView>
+            </View>
+          </View>
+        </ImageBackground>
       </View>
     );
-  };
+  }
 
-  let listViewItemSeparator = () => {
+  if (recipeParam === "broccoli") {
+
     return (
-      <View
-        style={{
-          height: 0.2,
-          width: '100%',
-          backgroundColor: '#808080',
-        }}
-      />
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+                  <ScrollView horizontal>
+                    <TouchableOpacity onPress={() => { navigation.navigate('StartRecipe',{recipeData, recipeParam}); }}>
+                      <Image
+                        style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                        source={require("../images/dashboard/broccoli.jpg")}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli2.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli3.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>FAN FAVOURITES</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli4.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli5.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli6.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>CHEF'S SELECTION</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/broccoli7.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+              </ ScrollView>
+            </View>
+          </View>
+        </ImageBackground>
+      </View>
     );
-  };
+  }
+  if (recipeParam === "salmon") {
 
-  return (
-    <View style={styles.backgroundContainer}>
-      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-        <View style={styles.container}>
-          <View style={styles.searchContainer}>
-            <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-              <View style={styles.searchHeader}>
-                <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
-              </View>
-            </ImageBackground>
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+                  <ScrollView horizontal>
+                    <TouchableOpacity onPress={() => { navigation.navigate('StartRecipe', {recipeData, recipeParam}); }}>
+                      <Image
+                        style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                        source={require("../images/dashboard/salmon.jpg")}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/salmon1.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/salmon2.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>FAN FAVOURITES</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/salmon3.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/salmon4.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>CHEF'S SELECTION</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/salmon5.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+              </ ScrollView>
+            </View>
           </View>
-          <View style={styles.scrollContainer}>
-              <View style={styles.scroll}>
-                <FlatList
-                  data={recipeData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => listRecipeItemView(item)}
-                />
+        </ImageBackground>
+      </View>
+    );
+  }
 
-              </View>
+   if (recipeParam === "steak") {
+
+    return (
+      <View style={styles.backgroundContainer}>
+        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+          <View style={styles.container}>
+            <View style={styles.searchContainer}>
+              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+                <View style={styles.searchHeader}>
+                  <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
+                </View>
+              </ImageBackground>
+            </View>
+            <View style={styles.scrollContainer}>
+              <ScrollView>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+                  <ScrollView horizontal>
+                    <TouchableOpacity onPress={() => { navigation.navigate('StartRecipe',{recipeData, recipeParam}); }}>
+                      <Image
+                        style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                        source={require("../images/dashboard/steak.jpg")}
+                      />
+                    </TouchableOpacity>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/steak2.jpg")}
+                    />
+                    
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>FAN FAVOURITES</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/steak3.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/steak4.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+                <View style={styles.scroll}>
+                  <Text style={styles.headerText}>CHEF'S SELECTION</Text>
+                  <ScrollView horizontal>
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/steak5.jpg")}
+                    />
+                    <Image
+                      style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
+                      source={require("../images/search/steak6.jpg")}
+                    />
+                  </ScrollView>
+                </View>
+              </ ScrollView>
+            </View>
           </View>
-        </View>
-      </ImageBackground>
-    </View>
-  );
+        </ImageBackground>
+      </View>
+    );
+  }
 }
-
 
 const styles = StyleSheet.create({
   backgroundContainer: {
