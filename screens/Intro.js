@@ -133,6 +133,18 @@ const IntroScreen = ({navigation}) => {
                 'pescatarian, paleo, low-carb, healthy, gluten-free, french, italian, chinese, japanese, greek'
               ],
             );
+            tx.executeSql(
+              'INSERT INTO table_recipe (recipe_title, recipe_description, recipe_ingredients, recipe_level, recipe_cookTime, recipe_imageUrl, recipe_categories) VALUES (?,?,?,?,?,?,?)',
+              [
+                'Baked Chicken Breast',
+                '\n1. Brine the chicken. \n2. Preheat oven to 450°F. \n3. Place the chicken breasts in a single layer in a large baking dish.  Brush on both sides (turning once) evenly with the melted butter or olive oil.  In a separate small bowl, whisk the salt, pepper, garlic powder and paprika until combined.  Then sprinkle the mixture evenly over the chicken on both sides. \n4. Bake for 15-18* minutes, or until the chicken is cooked through and no longer pink.',
+                '4 boneless skinless chicken breasts, 1 Tablespoon melted butter or olive oil, 1 teaspoon salt, 1/2 teaspoon pepper, 1/2 teaspoon garlic powder, 1/2 teaspoon paprika',
+                'Easy',
+                '5 min',
+                'https://www.gimmesomeoven.com/wp-content/uploads/2015/05/Oven-Baked-Chicken-Breast-Recipe-6.jpg',
+                'paleo, low-carb, healthy, gluten-free, intermediate, under $30'
+              ],
+            );
           }
         },
       );

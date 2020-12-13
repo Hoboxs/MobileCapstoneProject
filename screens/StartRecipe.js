@@ -22,7 +22,8 @@ var db = openDatabase({ name: 'UserDatabase.db' });
 const StartRecipeScreen = ({ route, navigation }) => {
 
     let [recipeData,setRecipeData] = useState(route.params.recipeData);
-    let [recipeParam,setRecipeParam] = useState(route.params.recipeParam);
+    let [recipeItem,setRecipeItem] = useState(route.params.item);
+    let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
 
     let save_favorite = () => {
       console.log("recipeData: ", recipeData[0].recipe_id);
@@ -43,124 +44,43 @@ const StartRecipeScreen = ({ route, navigation }) => {
       });
     };
 
-    let listRecipeItemView = (item) => {
-        return (
-          <View
-            key={item.recipe_id}
-            style={{ padding: 20 }}>
-            <Text>Level: {item.recipe_level}</Text>
-            <Text>Cook Time: {item.recipe_cookTime}</Text>
-            <Text>Ingredients: {item.recipe_ingredients}</Text>
-            <Text>Directions: {item.recipe_description}</Text>
-          </View>
-        );
-      };
-
-      let listViewItemSeparator = () => {
-        return (
-          <View
-            style={{
-              height: 0.2,
-              width: '100%',
-            }}
-          />
-        );
-      };
-
-    if(recipeParam === "chicken")
 
     return (
         <View style={styles.backgroundContainer}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/food8.jpg")} style={styles.image}>
+                    <ImageBackground source={{uri: recipeItem.recipe_imageUrl}} style={styles.image}>
                     </ImageBackground>
                 </View>
                 <View style={styles.RectangleShapeView}>
-                <Text style={styles.recipeTitleText}>Perfect Roast Chicken</Text>
+                <Text style={styles.recipeTitleText}>{recipeItem.recipe_title}</Text>
                 </View>
                 <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
                   <Icon name="heart" size={40} color="red" />
                 </TouchableOpacity>
             </View>
-            <FlatList
-                  data={recipeData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => listRecipeItemView(item)}
-                />
-        </View>
-    );
-    if(recipeParam === "broccoli")
-
-    return (
-        <View style={styles.backgroundContainer}>
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/broccoli.jpg")} style={styles.image}>
-                    </ImageBackground>
-                </View>
-                <View style={styles.RectangleShapeView}>
-                <Text style={styles.recipeTitleText}>Garlic Broccoli</Text>
-                </View>
-                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
-                  <Icon name="heart" size={40} color="red" />
-                </TouchableOpacity>
-            </View>
-            <FlatList
-                  data={recipeData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => listRecipeItemView(item)}
-                />
-        </View>
-    );
-    if(recipeParam === "steak")
-
-    return (
-        <View style={styles.backgroundContainer}>
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/food8.jpg")} style={styles.image}>
-                    </ImageBackground>
-                </View>
-                <View style={styles.RectangleShapeView}>
-                <Text style={styles.recipeTitleText}>Stove-top Steak</Text>
-                </View>
-                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
-                  <Icon name="heart" size={40} color="red" />
-                </TouchableOpacity>
-            </View>
-            <FlatList
-                  data={recipeData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => listRecipeItemView(item)}
-                />
-        </View>
-    );
-    if(recipeParam === "salmon")
-
-    return (
-        <View style={styles.backgroundContainer}>
-            <View style={styles.container}>
-                <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/salmon.jpg")} style={styles.image}>
-                    </ImageBackground>
-                </View>
-                <View style={styles.RectangleShapeView}>
-                <Text style={styles.recipeTitleText}>Honey Garlic Salmon</Text>
-                </View>
-                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
-                  <Icon name="heart" size={40} color="red" />
-                </TouchableOpacity>
-            </View>
-            <FlatList
-                  data={recipeData}
-                  ItemSeparatorComponent={listViewItemSeparator}
-                  keyExtractor={(item, index) => index.toString()}
-                  renderItem={({ item }) => listRecipeItemView(item)}
-                />
+            <ScrollView>
+                        <Text style={styles.infoText2}>
+                            Level:
+                                <Text style={styles.infoText}>{recipeItem.recipe_level}</Text>
+                        </Text>
+                        <Text style={styles.infoText2}>
+                            Total:
+                                <Text style={styles.infoText}>{recipeItem.recipe_cookTime}</Text>
+                        </Text>
+                        <Text style={styles.h2Text}>
+                            Ingredients:
+                        </Text>
+                        <Text>
+                        {recipeItem.recipe_ingredients}
+                        </Text>
+                        <Text style={styles.h2Text}>
+                            Directions:
+                        </Text>
+                        <Text>
+                        {recipeItem.recipe_description}
+                        </Text>
+                </ ScrollView>
         </View>
     );
   };

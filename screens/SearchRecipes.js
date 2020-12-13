@@ -24,7 +24,6 @@ const SearchRecipesScreen = ({ route, navigation }) => {
 
   let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
   let [searchParam, setSearchParam] = useState(route.params.searchParam);
-
   let [recipeData, setRecipeData] = useState({});
 
   const Item = ({ item, onPress, style }) => (
@@ -37,7 +36,7 @@ const SearchRecipesScreen = ({ route, navigation }) => {
     return (
       <Item
         item={item}
-        onPress={() => { navigation.navigate('StartRecipe', { recipeData, recipeParam }); }}
+        onPress={() => { navigation.navigate('StartRecipe', { item, recipeParam }); }}
       />
     );
   };

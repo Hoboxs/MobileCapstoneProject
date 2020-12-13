@@ -22,38 +22,38 @@ const SearchParametersScreen = ({ route, navigation }) => {
   let [searchParam, setSearchParam] = useState("");
 
   const diet = [
-    {id: "1", title: "vegan"},
-    {id: "2", title: "vegetarian"},
-    {id: "3", title: "pescatarian"},
-    {id: "4", title: "paleo"},
-    {id: "5", title: "low-carb"},
-    {id: "6", title: "healthy"},
-    {id: "7", title: "gluten-free"},
+    {id: "1", title: "vegan"}, 
+    {id: "2", title: "vegetarian"}, 
+    {id: "3", title: "pescatarian"}, 
+    {id: "4", title: "paleo"}, 
+    {id: "5", title: "low-carb"}, 
+    {id: "6", title: "healthy"}, 
+    {id: "7", title: "gluten-free"}, 
     {id: "8", title: "dairy-free"}
   ];
   const cuisine = [
-    {id: "9", title: "french"},
-    {id: "10", title: "italian"},
-    {id: "11", title: "mexican"},
-    {id: "12", title: "thai"},
-    {id: "13", title: "indian"},
-    {id: "14", title: "chinese"},
+    {id: "9", title: "french"}, 
+    {id: "10", title: "italian"}, 
+    {id: "11", title: "mexican"}, 
+    {id: "12", title: "thai"}, 
+    {id: "13", title: "indian"}, 
+    {id: "14", title: "chinese"}, 
     {id: "15", title: "caribbean"},
-    {id: "17", title: "greek"},
+    {id: "17", title: "greek"}, 
     {id: "18", title: "japanese"}
   ];
   const difficulty = [
-    {id: "19", title: "expert"},
-    {id: "20", title: "novice"},
+    {id: "19", title: "expert"}, 
+    {id: "20", title: "novice"}, 
     {id: "21", title: "intermediate"}
   ];
   const cost = [
-    {id: "22", title: "under $30"},
+    {id: "22", title: "under $30"}, 
     {id: "23", title: "under $15"},
   ];
   const time = [
-    {id: "24", title: "under 1 hour"},
-    {id: "25", title: "under half hour"},
+    {id: "24", title: "under 1 hour"}, 
+    {id: "25", title: "under half hour"}, 
     {id: "26", title: "under 15 min"}
   ];
 
@@ -114,7 +114,6 @@ const SearchParametersScreen = ({ route, navigation }) => {
                 renderItem={renderItem}
                 extraData={selectedId}
               />
-
               <Text style={styles.category}>DIFFICULTY</Text>
               <FlatList
                 horizontal
