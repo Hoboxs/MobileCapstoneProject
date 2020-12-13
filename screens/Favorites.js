@@ -25,35 +25,44 @@ const FavoritesScreen = ({ route, navigation }) => {
   let [recipeData, setRecipeData] = useState({});
   let [favKey, setFavKey] = useState();
 
-  const Item = ({ item, onPress, style }) => (
-    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
-      <Image source={{ uri: item.recipe_imageUrl }} style={[styles.recipeImage]} />
-    </TouchableOpacity>
-  );
+  function giveMeType(item){
+    console.log("Rec ID", item.recipe_id)
+    if(item.recipe_id = 1){
+      return "chicken";
+    } else if(item.recipe_id = 2){
+      return "steak";
+    } else if(item.recipe_id = 3){
+      return "broccoli";
+    } else if(item.recipe_id = 4){
+      return "salmon";
+    } else {
+      return "chicken";
+    }
 
-  const renderItem = ({ item }) => {
-    let rec_title = item.recipe_title;
-    return (
-      <Item
-        item={item}
-        onPress={() => { navigation.navigate('StartRecipe', { recipeData, "chicken" }) }}
-      />
+  }
+
+  const Item = ({ item, recipeParam }) => (
+      <TouchableOpacity onPress={() => navigation.navigate('StartRecipe', { recipeData, recipeParam }) } style={styles.item}>
+        <Image source={{ uri: item.recipe_imageUrl }} style={styles.recipeImage} />
+      </TouchableOpacity>
     );
-  };
 
-  useEffect(() => {
-    test();
-  }, []);
+    const renderItem = ({ item }) => {
+      return (
+        <Item
+          item={item}
+          recipeParam={giveMeType(item)}
+        />
+      );
+    };
 
   const test = () => {
     db.transaction((tx) => {
-      console.log("Test Hit")
       tx.executeSql(
         'SELECT * FROM table_userFavorites WHERE user_id = ?',
         [global.id],
         (tx, results) => {
           let len = results.rows.length;
-          console.log("Fav Len", len)
           if (len > 0) {
             let temp = [];
             for (let i = 0; i < results.rows.length; ++i) {
@@ -72,14 +81,12 @@ const FavoritesScreen = ({ route, navigation }) => {
 
   const test2 = () => {
     db.transaction((tx) => {
-      console.log("Test2 Hit", favKey.length)
       for (let i = 0; i < favKey.length; i++ ){
         tx.executeSql(
           'SELECT * FROM table_recipe where recipe_id = ?',
           [favKey.[i]],
           (tx, results) => {
             let len = results.rows.length;
-            console.log('Rec len', len);
             if (len > 0) {
               let temp = [];
               for (let i = 0; i < results.rows.length; ++i) {
@@ -88,14 +95,15 @@ const FavoritesScreen = ({ route, navigation }) => {
               console.log("Rec", temp)
               temp.push(recipeData)
               setRecipeData(temp);
+              console.log("Fin Rec", recipeData)
             } else {
               alert('No recipes found');
             }
           },
         );
       }
-      console.log("Fin Rec", recipeData)
     });
+
   };
 
   return (
@@ -116,12 +124,11 @@ const FavoritesScreen = ({ route, navigation }) => {
               </View>
           </ImageBackground>
           </View>
+          <TouchableOpacity style={styles.Btn} onPress={() => test()}>
+            <Text>Refresh</Text>
+          </TouchableOpacity>
           <View style={styles.scrollContainer}>
             <View style={styles.scroll}>
-              <TouchableOpacity style={styles.Btn} onPress={() => test()}>
-                <Text>Refresh</Text>
-              </TouchableOpacity>
-              <Text style={styles.headerText}>Your Favourites</Text>
               <FlatList
                 data={recipeData}
                 renderItem={renderItem}
@@ -200,7 +207,8 @@ const styles = StyleSheet.create({
    height:50,
    alignItems:"center",
    justifyContent:"center",
-   marginBottom:10
+   marginBottom:10,
+   marginTop:10
  },
  item: {
     flex: 1,
