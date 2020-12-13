@@ -46,10 +46,28 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 </View>
                 <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
             </View>
-            <Text>{recipeItem.recipe_level}</Text>
-            <Text>{recipeItem.recipe_cookTime}</Text>
-            <Text>{recipeItem.recipe_ingredients}</Text>
-            <Text>{recipeItem.recipe_description}</Text>
+            <ScrollView>
+                        <Text style={styles.infoText2}>
+                            Level:
+                                <Text style={styles.infoText}>{recipeItem.recipe_level}</Text>
+                        </Text>
+                        <Text style={styles.infoText2}>
+                            Total:
+                                <Text style={styles.infoText}>{recipeItem.recipe_cookTime}</Text>
+                        </Text>
+                        <Text style={styles.h2Text}>
+                            Ingredients:
+                        </Text>
+                        <Text>
+                        {recipeItem.recipe_ingredients}
+                        </Text>
+                        <Text style={styles.h2Text}>
+                            Directions:
+                        </Text>
+                        <Text>
+                        {recipeItem.recipe_description}
+                        </Text>
+                </ ScrollView>
         </View>
     );
   };

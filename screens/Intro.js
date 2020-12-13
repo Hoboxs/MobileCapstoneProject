@@ -111,8 +111,8 @@ const IntroScreen = ({navigation}) => {
               'INSERT INTO table_recipe (recipe_title, recipe_description, recipe_ingredients, recipe_level, recipe_cookTime, recipe_imageUrl, recipe_categories) VALUES (?,?,?,?,?,?,?)',
               [
                 'Baked Chicken Breast',
-                '\n1. In a Dutch oven, bring 1/2 in. of water to a boil. Add broccoli; cover and cook for 3-5 minutes or until crisp-tender; drain. Mix remaining ingredients; toss with broccoli.',
-                '13 cups fresh broccoli florets, 3 tablespoons butter, 5 garlic cloves, salt',
+                '\n1. Brine the chicken. \n2. Preheat oven to 450°F. \n3. Place the chicken breasts in a single layer in a large baking dish*.  Brush on both sides (turning once) evenly with the melted butter or olive oil.  In a separate small bowl, whisk the salt, pepper, garlic powder and paprika until combined.  Then sprinkle the mixture evenly over the chicken on both sides. \n4. Bake for 15-18* minutes, or until the chicken is cooked through and no longer pink.  Cooking time will depend on the thickness of the chicken breasts, so I recommend using a cooking thermometer to know exactly when it is fully cooked.  The thickest part of the breast, it should be 165°F. \n6. Once the chicken is cooked, remove the pan from the oven, transfer the chicken to a clean plate, and loosely tent the plate with aluminum foil.  Let the chicken rest for at least 5-10 minutes. \n7. Serve warm.  Or, refrigerate in a sealed container for up to 3 days, or freeze for up to 3 months. ',
+                '4 boneless skinless chicken breasts, pounded to even thickness and brined in saltwater, 1 Tablespoon melted butter or olive oil, 1 teaspoon kosher salt, 1/2 teaspoon freshly-cracked black pepper, 1/2 teaspoon garlic powder, 1/2 teaspoon paprika',
                 'Easy',
                 '5 min',
                 'https://www.gimmesomeoven.com/wp-content/uploads/2015/05/Oven-Baked-Chicken-Breast-Recipe-6.jpg',
