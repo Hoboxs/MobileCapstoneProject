@@ -23,6 +23,8 @@ let db = openDatabase({ name: 'UserDatabase.db' });
 const SearchRecipesScreen = ({ route, navigation }) => {
 
   let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
+  let [searchParam, setSearchParam] = useState(route.params.searchParam);
+
   let [recipeData, setRecipeData] = useState({});
 
   const Item = ({ item, onPress, style }) => (
@@ -43,8 +45,8 @@ const SearchRecipesScreen = ({ route, navigation }) => {
   useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_recipe where recipe_title like ?',
-        [`%${recipeParam}%`],
+        'SELECT * FROM table_recipe where recipe_title like ? and recipe_categories like ?',
+        [`%${recipeParam}%`,`%${searchParam}%`],
         (tx, results) => {
           let len = results.rows.length;
           console.log('len', len);
@@ -77,6 +79,7 @@ const SearchRecipesScreen = ({ route, navigation }) => {
             <View style={styles.scroll}>
               <Text style={styles.headerText}>NEWLY UPLOADED</Text>
               <FlatList
+                horizontal
                 data={recipeData}
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
@@ -95,7 +98,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
@@ -149,13 +151,12 @@ const styles = StyleSheet.create({
   item: {
     flex: 1,
     flexDirection: 'row',
-    padding: 20,
+    padding: 10,
     marginVertical: 8,
-    marginHorizontal: 16,
   },
   recipeImage: {
-    height: 150,
-    width: 150,
+    height: 175,
+    width: 175,
     padding: 5
   }
 });

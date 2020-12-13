@@ -63,6 +63,7 @@ const AllUsersScreen = () => {
         <Text>Ingredients: {item.recipe_ingredients}</Text>
         <Text>Directions: {item.recipe_description}</Text>
         <Text>Image URL: {item.recipe_imageUrl}</Text>
+        <Text>Categories: {item.recipe_categories}</Text>
       </View>
     );
   };
