@@ -42,7 +42,6 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 [
                   {
                     text: 'Ok',
-                    onPress: () => navigation.navigate('Login'),
                   },
                 ],
                 { cancelable: false }
