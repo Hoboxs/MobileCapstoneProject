@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,116 +15,81 @@ import {
 } from 'react-native';
 import { roundToNearestPixel } from 'react-native/Libraries/Utilities/PixelRatio';
 
-import {openDatabase} from 'react-native-sqlite-storage';
+import { openDatabase } from 'react-native-sqlite-storage';
 
-let db = openDatabase({name: 'UserDatabase.db'});
+let db = openDatabase({ name: 'UserDatabase.db' });
 
 
 const SearchRecipesScreen = ({ route, navigation }) => {
 
-  let [recipeParam,setRecipeParam] = useState(route.params.obj);
-  let [recipeData, setRecipeData] = useState();
+  let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
+  let [searchParam, setSearchParam] = useState(route.params.searchParam);
+  let [recipeData, setRecipeData] = useState({});
 
-  let searchRecipe = () => {
-    setRecipeData({});
+  const Item = ({ item, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.item, style]}>
+      <Image source={{ uri: item.recipe_imageUrl }} style={[styles.recipeImage]} />
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }) => {
+    return (
+      <Item
+        item={item}
+        onPress={() => { navigation.navigate('StartRecipe', { item, recipeParam }); }}
+      />
+    );
+  };
+
+  useEffect(() => {
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM table_recipe where recipe_title like ?',
-        [`%${recipeParam}%`],
+        'SELECT * FROM table_recipe where recipe_title like ? and recipe_categories like ?',
+        [`%${recipeParam}%`,`%${searchParam}%`],
         (tx, results) => {
           let len = results.rows.length;
           console.log('len', len);
           if (len > 0) {
-            setRecipeData(results.rows.item(0));
+            let temp = [];
+            for (let i = 0; i < results.rows.length; ++i) {
+              temp.push(results.rows.item(i));
+            }
+            setRecipeData(temp);
           } else {
             alert('No recipes found');
           }
         },
       );
     });
-  };
+  }, []);
 
   return (
     <View style={styles.backgroundContainer}>
-       <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-           <View style={styles.container}>
-               <View style={styles.searchContainer}>
-                   <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                       <View style={styles.searchHeader}>
-                           <Text style={styles.searchText}>Search Results for {route.params.obj}</Text>
-                           <View style={styles.inputView} >
-                               <TextInput
-                                 style={styles.inputText}
-                                 placeholder="Search"
-                                 placeholderTextColor="lightgrey"
-                               />
-                           </View>
-                       </View>
-                   </ImageBackground>
-               </View>
-           <View style={styles.scrollContainer}>
-               <ScrollView>
-                   <View style={styles.scroll}>
-                       <Text style={styles.headerText}>NEWLY UPLOADED</Text>
-                       <ScrollView horizontal>
-                       <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
-                              <Image
-                                style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                                source={require("../images/dashboard/food8.jpg")}
-                              />
-                            </TouchableOpacity>
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search2.jpg")}
-                           />
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search3.jpg")}
-                           />
-                       </ScrollView>
-                   </View>
-                   <View style={styles.scroll}>
-                       <Text style={styles.headerText}>FAN FAVOURITES</Text>
-                       <ScrollView horizontal>
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search4.jpg")}
-                           />
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search5.jpg")}
-                           />
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search6.jpg")}
-                           />
-                       </ScrollView>
-                   </View>
-                   <View style={styles.scroll}>
-                       <Text style={styles.headerText}>{"CHEF'S SELECTION"}</Text>
-                       <ScrollView horizontal>
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search7.jpg")}
-                           />
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search8.jpg")}
-                           />
-                           <Image
-                             style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
-                             source={require("../images/search/search9.jpg")}
-                           />
-                       </ScrollView>
-                   </View>
-               </ ScrollView>
-           </View>
-       </View>
-     </ImageBackground>
+      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+        <View style={styles.container}>
+          <View style={styles.searchContainer}>
+            <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+              <View style={styles.searchHeader}>
+                <Text style={styles.searchText}>Search Results for {recipeParam}</Text>
+              </View>
+            </ImageBackground>
+          </View>
+          <View style={styles.scrollContainer}>
+            <View style={styles.scroll}>
+              <Text style={styles.headerText}>NEWLY UPLOADED</Text>
+              <FlatList
+                horizontal
+                data={recipeData}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+              />
+            </View>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
- );
+  );
 }
-
 
 const styles = StyleSheet.create({
   backgroundContainer: {
@@ -132,7 +97,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   image: {
@@ -153,7 +117,7 @@ const styles = StyleSheet.create({
   searchText: {
     textAlign: 'center',
     marginBottom: 20,
-    fontSize: 18,
+    fontSize: 27,
     fontWeight: 'bold',
     color: 'white',
   },
@@ -163,7 +127,6 @@ const styles = StyleSheet.create({
   },
   scroll: {
     width: "100%",
-    height: 200,
     marginBottom: 20,
     justifyContent: "center",
     padding: 20
@@ -183,6 +146,17 @@ const styles = StyleSheet.create({
   headerText: {
     height: 20,
     fontWeight: 'bold',
+  },
+  item: {
+    flex: 1,
+    flexDirection: 'row',
+    padding: 10,
+    marginVertical: 8,
+  },
+  recipeImage: {
+    height: 175,
+    width: 175,
+    padding: 5
   }
 });
 

@@ -37,7 +37,7 @@ const DashboardScreen = ({navigation}) => {
                                     returnKeyType = "search"
                                     onChangeText={(text) => {setObj(text)}}
                                     onSubmitEditing={() => {
-                                      navigation.navigate('SearchRecipes',{obj});
+                                      navigation.navigate('SearchParameters',{obj});
                                       }}
                                   />
                               </View>
@@ -49,7 +49,7 @@ const DashboardScreen = ({navigation}) => {
                       <View style={styles.scroll}>
                           <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
                           <ScrollView horizontal>
-                            <TouchableOpacity onPress={()=>{navigation.navigate('StartRecipe');}}>
+                            <TouchableOpacity>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
                                 source={require("../images/dashboard/food8.jpg")}

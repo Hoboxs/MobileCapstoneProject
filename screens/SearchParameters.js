@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -15,199 +15,139 @@ import {
 } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
-class SearchParametersScreen extends React.Component {
+const SearchParametersScreen = ({ route, navigation }) => {
 
-  constructor({navigation}) {
-    super();
-  }
+  let [recipeParam, setRecipeParam] = useState(route.params.obj);
+  const [selectedId, setSelectedId] = useState(null);
+  let [searchParam, setSearchParam] = useState("");
 
-  render() {
+  const diet = [
+    {id: "1", title: "vegan"}, 
+    {id: "2", title: "vegetarian"}, 
+    {id: "3", title: "pescatarian"}, 
+    {id: "4", title: "paleo"}, 
+    {id: "5", title: "low-carb"}, 
+    {id: "6", title: "healthy"}, 
+    {id: "7", title: "gluten-free"}, 
+    {id: "8", title: "dairy-free"}
+  ];
+  const cuisine = [
+    {id: "9", title: "french"}, 
+    {id: "10", title: "italian"}, 
+    {id: "11", title: "mexican"}, 
+    {id: "12", title: "thai"}, 
+    {id: "13", title: "indian"}, 
+    {id: "14", title: "chinese"}, 
+    {id: "15", title: "caribbean"},
+    {id: "17", title: "greek"}, 
+    {id: "18", title: "japanese"}
+  ];
+  const difficulty = [
+    {id: "19", title: "expert"}, 
+    {id: "20", title: "novice"}, 
+    {id: "21", title: "intermediate"}
+  ];
+  const cost = [
+    {id: "22", title: "under $30"}, 
+    {id: "23", title: "under $15"},
+  ];
+  const time = [
+    {id: "24", title: "under 1 hour"}, 
+    {id: "25", title: "under half hour"}, 
+    {id: "26", title: "under 15 min"}
+  ];
+
+  const Item = ({ item, onPress, style }) => (
+    <TouchableOpacity onPress={onPress} style={[styles.myButton, style]}>
+      <Text>{item.title}</Text>
+    </TouchableOpacity>
+  );
+
+  const renderItem = ({ item }) => {
+    const backgroundColor = item.id === selectedId ? "#FF007F" : "#7C9262";
+
     return (
-      <View style={styles.backgroundContainer}>
-        <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
-          <View style={styles.container}>
-            <View style={styles.searchContainer}>
-              <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
-                <View style={styles.searchHeader}>
-                  <Text style={styles.searchText}>Search Recipes</Text>
-                  <View style={styles.inputView} >
-                    <TextInput
-                      style={styles.inputText}
-                      placeholder="Search"
-                      placeholderTextColor="lightgrey"
-                    />
-                  </View>
-                </View>
-              </ImageBackground>
-            </View>
-            <View style={styles.scrollContainer}>
-              <ScrollView>
-                <Text style={styles.category}>DIET</Text>
-                <View style={styles.categories}>
-                  <TouchableOpacity onPress={() => {this.props.navigation.navigate('SearchRecipes')}}>
-                    <View style={styles.myButton}>
-                      <Text>Vegan</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Vegetarian</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Pescatarian</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Plaeo</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Low-carb</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Healthy</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Gluten-free</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Dairy-free</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.category}>CUISINE</Text>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>French</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Italian</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Mexican</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Thai</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Indian</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Chinese</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Caribbean</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Greek</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Japanese</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.category}>DIFFICULTY</Text>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Expert</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Novice</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Intermidiate</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.category}>COST</Text>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Low to High</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>High to Low</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Under $30</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Under $15</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <Text style={styles.category}>TIME</Text>
-                <View style={styles.categories}>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Under1 hour</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Under half hour</Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity>
-                    <View style={styles.myButton}>
-                      <Text>Under 15 min</Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+      <Item
+        item={item}
+        onPress={() => {setSelectedId(item.id); setSearchParam(item.title) }}
+        style={{ backgroundColor }}
+      />
+    );
+  };
 
+  return (
+    <View style={styles.backgroundContainer}>
+      <ImageBackground source={require("../images/background/light-wood.jpg")} style={styles.image}>
+        <View style={styles.container}>
+          <View style={styles.searchContainer}>
+            <ImageBackground source={require("../images/background/dark-wood.jpg")} style={styles.image}>
+              <View style={styles.searchHeader}>
+                <Text style={styles.searchText}>Search Recipes</Text>
+                <View style={styles.inputView} >
+                  <TextInput
+                    defaultValue={recipeParam}
+                    style={styles.inputText}
+                    onChangeText={(text) => { setRecipeParam(text) }}
+                    onSubmitEditing={() => {
+                      navigation.navigate('SearchRecipes', { recipeParam, searchParam });
+                    }}
+                  />
+                </View>
+              </View>
+            </ImageBackground>
+          </View>
+          <View style={styles.scrollContainer}>
+            <View>
+              <Text style={styles.category}>DIET</Text>
+              <FlatList
+                horizontal
+                data={diet}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                extraData={selectedId}
+              />
+              <Text style={styles.category}>CUISINE</Text>
+              <FlatList
+                horizontal
+                data={cuisine}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                extraData={selectedId}
+              />
+              
+              <Text style={styles.category}>DIFFICULTY</Text>
+              <FlatList
+                horizontal
+                data={difficulty}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                extraData={selectedId}
+              />
+              <Text style={styles.category}>COST</Text>
+              <FlatList
+                horizontal
+                data={cost}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                extraData={selectedId}
+              />
+              <Text style={styles.category}>TIME</Text>
+              <FlatList
+                horizontal
+                data={time}
+                keyExtractor={(item) => item.id}
+                renderItem={renderItem}
+                extraData={selectedId}
+              />
 
-              </ ScrollView>
             </View>
           </View>
-        </ImageBackground>
-      </View>
-    );
-  }
+        </View>
+      </ImageBackground>
+    </View>
+  );
 };
+
 
 
 const styles = StyleSheet.create({

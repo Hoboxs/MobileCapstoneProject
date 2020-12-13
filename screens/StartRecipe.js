@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     SafeAreaView,
     StyleSheet,
@@ -15,84 +15,62 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-class StartRecipeScreen extends React.Component {
+const StartRecipeScreen = ({ route, navigation }) => {
 
-  constructor({navigation}) {
-    super();
-  }
+    let [recipeData,setRecipeData] = useState(route.params.recipeData);
+    let [recipeItem,setRecipeItem] = useState(route.params.item);
+    let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
 
-  render() {
+    let listRecipeItemView = (item) => {
+        return (
+          <View
+            key={item.recipe_id}
+            style={{ padding: 20 }}>
+            <Text>Level: {item.recipe_level}</Text>
+            <Text>Cook Time: {item.recipe_cookTime}</Text>
+            <Text>Ingredients: {item.recipe_ingredients}</Text>
+            <Text>Directions: {item.recipe_description}</Text>
+          </View>
+        );
+      };
+
     return (
         <View style={styles.backgroundContainer}>
             <View style={styles.container}>
                 <View style={styles.imageContainer}>
-                    <ImageBackground source={require("../images/dashboard/food8.jpg")} style={styles.image}>
+                    <ImageBackground source={{uri: recipeItem.recipe_imageUrl}} style={styles.image}>
                     </ImageBackground>
                 </View>
                 <View style={styles.RectangleShapeView}>
-                    <Text style={styles.recipeTitleText}>Perfect Roast Chicken</Text>
+                <Text style={styles.recipeTitleText}>{recipeItem.recipe_title}</Text>
                 </View>
                 <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
             </View>
-            <View style={styles.scrollContainer}>
-                <ScrollView>
+            <ScrollView>
                         <Text style={styles.infoText2}>
                             Level:
-                                <Text style={styles.infoText}> Intermidiate</Text>
+                                <Text style={styles.infoText}>{recipeItem.recipe_level}</Text>
                         </Text>
                         <Text style={styles.infoText2}>
                             Total:
-                                <Text style={styles.infoText}> 1h 40 min</Text>
+                                <Text style={styles.infoText}>{recipeItem.recipe_cookTime}</Text>
                         </Text>
                         <Text style={styles.h2Text}>
                             Ingredients:
                         </Text>
                         <Text>
-                            1 (3 pound) whole chicken, giblets removed
-                            {'\n'}
-                            salt and black pepper to taste
-                            {'\n'}
-                            1 tablespoon onion powder
-                            {'\n'}
-                            1/2 cup margarine, divided
-                            {'\n'}
-                            1 stalk celery, leaves removed
+                        {recipeItem.recipe_ingredients}
                         </Text>
                         <Text style={styles.h2Text}>
                             Directions:
                         </Text>
                         <Text>
-                            <Icon name="check" size={18} color="#7C9262"/>
-                            {" "} Preheat oven to 350 degrees F (175 degrees C).
-                            {'\n'}
-                        </Text>
-                        <Text>
-                            <Icon name="check" size={18} color="#7C9262"/>
-                             {" "} Place chicken in a roasting pan, and season generously
-                             inside and out with salt and pepper. Sprinkle inside and
-                             out with onion powder. Place 3 tablespoons margarine
-                             in the chicken cavity. Arrange dollops of the remaining
-                             margarine around the chicken's exterior.Cut the celery
-                             into 3 or 4 pieces, and place in the chicken cavity.
-                             {'\n'}
-
-                        </Text>
-                        <Text>
-                             <Icon name="check" size={18} color="#7C9262"/>
-                             {" "} Bake uncovered 1 hour and 15 minutes in the preheated
-                             oven, to a minimum internal temperature of 180 degrees
-                             F (82 degrees C). Remove from heat, and baste with
-                             melted margarine and drippings. Cover with aluminum
-                             foil, and allow to rest about 30 minutes before serving
-                             {'\n'}
+                        {recipeItem.recipe_description}
                         </Text>
                 </ ScrollView>
-            </View>
         </View>
     );
-  }
-};
-
+  };
 
 const styles = StyleSheet.create({
     backgroundContainer: {
