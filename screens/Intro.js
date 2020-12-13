@@ -107,6 +107,18 @@ const IntroScreen = ({navigation}) => {
                 'pescatarian, paleo, low-carb, healthy, gluten-free, french, italian, chinese, japanese, greek'
               ],
             );
+            tx.executeSql(
+              'INSERT INTO table_recipe (recipe_title, recipe_description, recipe_ingredients, recipe_level, recipe_cookTime, recipe_imageUrl, recipe_categories) VALUES (?,?,?,?,?,?,?)',
+              [
+                'Baked Chicken Breast',
+                '\n1. In a Dutch oven, bring 1/2 in. of water to a boil. Add broccoli; cover and cook for 3-5 minutes or until crisp-tender; drain. Mix remaining ingredients; toss with broccoli.',
+                '13 cups fresh broccoli florets, 3 tablespoons butter, 5 garlic cloves, salt',
+                'Easy',
+                '5 min',
+                'https://www.gimmesomeoven.com/wp-content/uploads/2015/05/Oven-Baked-Chicken-Breast-Recipe-6.jpg',
+                'paleo, low-carb, healthy, gluten-free, intermediate, under $30'
+              ],
+            );
           }
         },
       );
