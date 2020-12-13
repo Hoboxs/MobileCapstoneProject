@@ -114,7 +114,6 @@ const SearchParametersScreen = ({ route, navigation }) => {
                 renderItem={renderItem}
                 extraData={selectedId}
               />
-              
               <Text style={styles.category}>DIFFICULTY</Text>
               <FlatList
                 horizontal

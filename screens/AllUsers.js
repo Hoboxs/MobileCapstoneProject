@@ -8,6 +8,7 @@ var db = openDatabase({name: 'UserDatabase.db'});
 const AllUsersScreen = () => {
   let [flatListUserItems, setFlatListUserItems] = useState([]);
   let [flatListRecipeItems, setFlatListRecipeItems] = useState([]);
+  let [flatListFavItems, setFlatListFavItems] = useState([]);
 
   useEffect(() => {
     db.transaction((tx) => {
@@ -28,6 +29,19 @@ const AllUsersScreen = () => {
     });
   }, []);
 
+
+  useEffect(() => {
+    db.transaction((tx) => {
+      tx.executeSql('SELECT * FROM table_userFavorites', [], (tx, results) => {
+        var temp = [];
+        for (let i = 0; i < results.rows.length; ++i) {
+          temp.push(results.rows.item(i));
+        }
+        setFlatListFavItems(temp);
+      });
+    });
+  }, []);
+
   let listViewItemSeparator = () => {
     return (
       <View
@@ -37,6 +51,16 @@ const AllUsersScreen = () => {
           backgroundColor: '#808080',
         }}
       />
+    );
+  };
+
+  let listFavItemView = (item) => {
+    return (
+      <View key={item.fav_id} style={{backgroundColor: 'white', padding: 20}}>
+        <Text>Favorite Id: {item.fav_id}</Text>
+        <Text>User Id: {item.user_id}</Text>
+        <Text>Recipe Id: {item.recipe_id}</Text>
+      </View>
     );
   };
 
@@ -85,6 +109,13 @@ const AllUsersScreen = () => {
             ItemSeparatorComponent={listViewItemSeparator}
             keyExtractor={(item, index) => index.toString()}
             renderItem={({item}) => listRecipeItemView(item)}
+          />
+          <Text>Favorites: </Text>
+          <FlatList
+            data={flatListFavItems}
+            ItemSeparatorComponent={listViewItemSeparator}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({item}) => listFavItemView(item)}
           />
         </View>
       </View>

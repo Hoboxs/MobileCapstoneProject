@@ -22,12 +22,38 @@ var db = openDatabase({name: 'UserDatabase.db'});
 const IntroScreen = ({navigation}) => {
   useEffect(() => {
     db.transaction(function (txn) {
+      txn.executeSql('DROP TABLE IF EXISTS table_userFavorites', []);
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_userFavorites'",
+        [],
+        function (tx, res) {
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP TABLE IF EXISTS table_userFavorites', []);
+            txn.executeSql(
+              'CREATE TABLE IF NOT EXISTS table_userFavorites(fav_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, recipe_id INTEGER)',
+              [],
+            );
+            tx.executeSql(
+              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
+              [1, 1],
+            );
+            tx.executeSql(
+              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
+              [1, 2],
+            );
+          }
+        },
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    db.transaction(function (txn) {
       txn.executeSql('DROP TABLE IF EXISTS table_user', []);
       txn.executeSql(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
         [],
         function (tx, res) {
-          console.log('item:', res.rows.length);
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS table_user', []);
             txn.executeSql(
@@ -125,6 +151,7 @@ const IntroScreen = ({navigation}) => {
     });
   }, []);
 
+
   useEffect(() => {
     db.transaction(function (txn) {
       txn.executeSql('DROP TABLE IF EXISTS table_ingredients', []);
@@ -132,7 +159,6 @@ const IntroScreen = ({navigation}) => {
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_ingredients'",
         [],
         function (tx, res) {
-          console.log('item:', res.rows.length);
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS table_ingredients', []);
             txn.executeSql(
@@ -237,7 +263,6 @@ const IntroScreen = ({navigation}) => {
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='table_stored_ingredients'",
                 [],
                 function (tx, res) {
-                    console.log('item:', res.rows.length);
                     if (res.rows.length == 0) {
                         txn.executeSql('DROP TABLE IF EXISTS table_stored_ingredients', []);
                         txn.executeSql(

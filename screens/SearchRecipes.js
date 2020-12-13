@@ -61,6 +61,8 @@ const SearchRecipesScreen = ({ route, navigation }) => {
         },
       );
     });
+    console.log("Search Recipe Data", recipeData)
+    console.log("Search Recipe Param", recipeParam)
   }, []);
 
   return (
@@ -81,7 +83,7 @@ const SearchRecipesScreen = ({ route, navigation }) => {
                 horizontal
                 data={recipeData}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item, index) => index.toString()}
               />
             </View>
           </View>
