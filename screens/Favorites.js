@@ -25,24 +25,8 @@ const FavoritesScreen = ({ route, navigation }) => {
   let [recipeData, setRecipeData] = useState({});
   let [favKey, setFavKey] = useState();
 
-  function giveMeType(item){
-    console.log("Rec ID", item.recipe_id)
-    if(item.recipe_id = 1){
-      return "chicken";
-    } else if(item.recipe_id = 2){
-      return "steak";
-    } else if(item.recipe_id = 3){
-      return "broccoli";
-    } else if(item.recipe_id = 4){
-      return "salmon";
-    } else {
-      return "chicken";
-    }
-
-  }
-
-  const Item = ({ item, recipeParam }) => (
-      <TouchableOpacity onPress={() => navigation.navigate('StartRecipe', { recipeData, recipeParam }) } style={styles.item}>
+  const Item = ({ item, onPress }) => (
+      <TouchableOpacity onPress={ onPress } style={styles.item}>
         <Image source={{ uri: item.recipe_imageUrl }} style={styles.recipeImage} />
       </TouchableOpacity>
     );
@@ -51,7 +35,7 @@ const FavoritesScreen = ({ route, navigation }) => {
       return (
         <Item
           item={item}
-          recipeParam={giveMeType(item)}
+          onPress={() => { navigation.navigate('StartRecipe', { item }); }}
         />
       );
     };
@@ -68,7 +52,6 @@ const FavoritesScreen = ({ route, navigation }) => {
             for (let i = 0; i < results.rows.length; ++i) {
               temp.push(results.rows.item(i).recipe_id);
             }
-            console.log("T", temp)
             setFavKey(temp);
           } else {
             alert('No favorites found');
@@ -81,10 +64,9 @@ const FavoritesScreen = ({ route, navigation }) => {
 
   const test2 = () => {
     db.transaction((tx) => {
-      for (let i = 0; i < favKey.length; i++ ){
         tx.executeSql(
           'SELECT * FROM table_recipe where recipe_id = ?',
-          [favKey.[i]],
+          [favKey.[0]],
           (tx, results) => {
             let len = results.rows.length;
             if (len > 0) {
@@ -92,16 +74,12 @@ const FavoritesScreen = ({ route, navigation }) => {
               for (let i = 0; i < results.rows.length; ++i) {
                 temp.push(results.rows.item(i));
               }
-              console.log("Rec", temp)
-              temp.push(recipeData)
               setRecipeData(temp);
-              console.log("Fin Rec", recipeData)
             } else {
               alert('No recipes found');
             }
           },
         );
-      }
     });
 
   };

@@ -33,14 +33,6 @@ const IntroScreen = ({navigation}) => {
               'CREATE TABLE IF NOT EXISTS table_userFavorites(fav_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, recipe_id INTEGER)',
               [],
             );
-            tx.executeSql(
-              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
-              [1, 1],
-            );
-            tx.executeSql(
-              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
-              [1, 2],
-            );
           }
         },
       );

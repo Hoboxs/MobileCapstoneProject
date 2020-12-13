@@ -211,7 +211,7 @@ const AppTab = ({navigation}) => {
       <Tab.Screen name="Favorites" component={FavoritesScreen} />
       <Tab.Screen name="MyPantry" component={MyPantryScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
-      <Tab.Screen name="AllUsers" component={AllUsersScreen} />
+      {/*<Tab.Screen name="AllUsers" component={AllUsersScreen} />*/}
     </Tab.Navigator>
   );
 };

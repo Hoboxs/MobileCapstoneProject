@@ -12,6 +12,7 @@ import {
     Image,
     FlatList,
     ImageBackground,
+    Alert
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -26,18 +27,26 @@ const StartRecipeScreen = ({ route, navigation }) => {
     let [recipeParam, setRecipeParam] = useState(route.params.recipeParam);
 
     let save_favorite = () => {
-      console.log("recipeData: ", recipeData[0].recipe_id);
-
       db.transaction((tx) => {
         tx.executeSql(
           'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
-          [global.id, recipeData[0].recipe_id],
+          [global.id, recipeItem.recipe_id],
           (tx, results) => {
             console.log('Results', results.rowsAffected);
             if (results.rowsAffected < 1) {
               alert('Failed');
             }else{
-              alert('Not Failed');
+              Alert.alert(
+                'Success',
+                'Recipe Added to Favorites',
+                [
+                  {
+                    text: 'Ok',
+                    onPress: () => navigation.navigate('Login'),
+                  },
+                ],
+                { cancelable: false }
+              );
             }
           }
         );

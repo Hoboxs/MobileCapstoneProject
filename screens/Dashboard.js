@@ -49,12 +49,10 @@ const DashboardScreen = ({navigation}) => {
                       <View style={styles.scroll}>
                           <Text style={styles.headerText}>USE YOUR CHICKEN</Text>
                           <ScrollView horizontal>
-                            <TouchableOpacity>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
                                 source={require("../images/dashboard/food8.jpg")}
                               />
-                            </TouchableOpacity>
                               <Image
                                 style={{ width: 175, height: 175, marginBottom: 20, marginRight: 20 }}
                                 source={require("../images/dashboard/food2.jpg")}
