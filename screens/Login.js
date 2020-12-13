@@ -34,7 +34,6 @@ const LoginScreen = ({ navigation }) => {
         [email, password],
         (tx, results) => {
           var len = results.rows.length;
-          console.log('len', len);
           if (len > 0) {
             global.name = results.rows.item(0).user_name;
             global.email = results.rows.item(0).user_email;

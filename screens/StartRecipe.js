@@ -15,10 +15,33 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { openDatabase } from 'react-native-sqlite-storage';
+
+var db = openDatabase({ name: 'UserDatabase.db' });
+
 const StartRecipeScreen = ({ route, navigation }) => {
 
     let [recipeData,setRecipeData] = useState(route.params.recipeData);
     let [recipeParam,setRecipeParam] = useState(route.params.recipeParam);
+
+    let save_favorite = () => {
+      console.log("recipeData: ", recipeData[0].recipe_id);
+
+      db.transaction((tx) => {
+        tx.executeSql(
+          'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
+          [global.id, recipeData[0].recipe_id],
+          (tx, results) => {
+            console.log('Results', results.rowsAffected);
+            if (results.rowsAffected < 1) {
+              alert('Failed');
+            }else{
+              alert('Not Failed');
+            }
+          }
+        );
+      });
+    };
 
     let listRecipeItemView = (item) => {
         return (
@@ -32,7 +55,7 @@ const StartRecipeScreen = ({ route, navigation }) => {
           </View>
         );
       };
-    
+
       let listViewItemSeparator = () => {
         return (
           <View
@@ -56,7 +79,9 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 <View style={styles.RectangleShapeView}>
                 <Text style={styles.recipeTitleText}>Perfect Roast Chicken</Text>
                 </View>
-                <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
+                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
+                  <Icon name="heart" size={40} color="red" />
+                </TouchableOpacity>
             </View>
             <FlatList
                   data={recipeData}
@@ -78,7 +103,9 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 <View style={styles.RectangleShapeView}>
                 <Text style={styles.recipeTitleText}>Garlic Broccoli</Text>
                 </View>
-                <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
+                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
+                  <Icon name="heart" size={40} color="red" />
+                </TouchableOpacity>
             </View>
             <FlatList
                   data={recipeData}
@@ -100,7 +127,9 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 <View style={styles.RectangleShapeView}>
                 <Text style={styles.recipeTitleText}>Stove-top Steak</Text>
                 </View>
-                <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
+                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
+                  <Icon name="heart" size={40} color="red" />
+                </TouchableOpacity>
             </View>
             <FlatList
                   data={recipeData}
@@ -122,7 +151,9 @@ const StartRecipeScreen = ({ route, navigation }) => {
                 <View style={styles.RectangleShapeView}>
                 <Text style={styles.recipeTitleText}>Honey Garlic Salmon</Text>
                 </View>
-                <Icon name="heart" size={40} color="red" style={{ position: 'absolute', top: 20, left: 330 }}/>
+                <TouchableOpacity style={styles.favBtn} onPress = {() => {save_favorite()}}>
+                  <Icon name="heart" size={40} color="red" />
+                </TouchableOpacity>
             </View>
             <FlatList
                   data={recipeData}
@@ -187,6 +218,13 @@ const styles = StyleSheet.create({
         fontWeight: "bold",
         marginTop: 30,
         marginBottom:5
+    },
+    favBtn:{
+      position: 'absolute',
+      top: 20,
+      left: 330,
+      width: 40,
+      height: 40,
     },
 });
 

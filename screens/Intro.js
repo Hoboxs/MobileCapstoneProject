@@ -22,12 +22,38 @@ var db = openDatabase({name: 'UserDatabase.db'});
 const IntroScreen = ({navigation}) => {
   useEffect(() => {
     db.transaction(function (txn) {
+      txn.executeSql('DROP TABLE IF EXISTS table_userFavorites', []);
+      txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='table' AND name='table_userFavorites'",
+        [],
+        function (tx, res) {
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP TABLE IF EXISTS table_userFavorites', []);
+            txn.executeSql(
+              'CREATE TABLE IF NOT EXISTS table_userFavorites(fav_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, recipe_id INTEGER)',
+              [],
+            );
+            tx.executeSql(
+              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
+              [1, 1],
+            );
+            tx.executeSql(
+              'INSERT INTO table_userFavorites (user_id, recipe_id) VALUES (?,?)',
+              [1, 2],
+            );
+          }
+        },
+      );
+    });
+  }, []);
+
+  useEffect(() => {
+    db.transaction(function (txn) {
       txn.executeSql('DROP TABLE IF EXISTS table_user', []);
       txn.executeSql(
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_user'",
         [],
         function (tx, res) {
-          console.log('item:', res.rows.length);
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS table_user', []);
             txn.executeSql(
@@ -51,7 +77,6 @@ const IntroScreen = ({navigation}) => {
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_recipe'",
         [],
         function (tx, res) {
-          console.log('item:', res.rows.length);
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS table_recipe', []);
             txn.executeSql(
@@ -67,7 +92,7 @@ const IntroScreen = ({navigation}) => {
                 '1 whole chicken, Salt, Pepper, 1 tablespoon onion powder, 1/2 cup margarine, 1 stalk celery',
                 'Intermediate',
                 '1 hour 40 min',
-                'chicken.jpg',
+                'https://www.spendwithpennies.com/wp-content/uploads/2018/11/SpendWithPennies-Juicy-Roast-Chicken-25.jpg',
               ],
             );
             tx.executeSql(
@@ -78,7 +103,7 @@ const IntroScreen = ({navigation}) => {
                 '2 New York Steaks, Salt, 3 tablespoons butter, 3 cloves garlic, 2 springs fresh rosemary',
                 'Easy',
                 '30 min',
-                'steak.jpg',
+                'https://cookthestory.com/wp-content/uploads/2018/09/Steak-from-Frozen-1392x780-1716.jpg',
               ],
             );
             tx.executeSql(
@@ -89,7 +114,7 @@ const IntroScreen = ({navigation}) => {
                 '13 cups fresh broccoli florets, 3 tablespoons butter, 5 garlic cloves, salt',
                 'Easy',
                 '5 min',
-                'broccoli.jpg',
+                'https://buildyourbite.com/wp-content/uploads/2018/06/broccoli-with-garlic-sauce-4-720x540.jpg',
               ],
             );
             tx.executeSql(
@@ -100,7 +125,7 @@ const IntroScreen = ({navigation}) => {
                 '4 salmon filets, 1 tablespoon butter, 3 garlic cloves, 3 tablespoons honey, 2 tablespoons lemon juice',
                 'Easy',
                 '20 min',
-                'food11.jpg',
+                'https://storcpdkenticomedia.blob.core.windows.net/media/recipemanagementsystem/media/recipe-media-files/recipes/retail/x17/18924-lemon-pepper-salmon-760x580.jpg?ext=.jpg',
               ],
             );
           }
@@ -109,6 +134,7 @@ const IntroScreen = ({navigation}) => {
     });
   }, []);
 
+
   useEffect(() => {
     db.transaction(function (txn) {
       txn.executeSql('DROP TABLE IF EXISTS table_ingredients', []);
@@ -116,7 +142,6 @@ const IntroScreen = ({navigation}) => {
         "SELECT name FROM sqlite_master WHERE type='table' AND name='table_ingredients'",
         [],
         function (tx, res) {
-          console.log('item:', res.rows.length);
           if (res.rows.length == 0) {
             txn.executeSql('DROP TABLE IF EXISTS table_ingredients', []);
             txn.executeSql(
@@ -221,7 +246,6 @@ const IntroScreen = ({navigation}) => {
                 "SELECT name FROM sqlite_master WHERE type='table' AND name='table_stored_ingredients'",
                 [],
                 function (tx, res) {
-                    console.log('item:', res.rows.length);
                     if (res.rows.length == 0) {
                         txn.executeSql('DROP TABLE IF EXISTS table_stored_ingredients', []);
                         txn.executeSql(
